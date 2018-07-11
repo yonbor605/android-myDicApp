@@ -22,10 +22,10 @@ android {
         }
     }
 
-    configurations {
-        all*.exclude group: 'com.android.support', module: 'support-v4'
-        all*.exclude group: 'com.android.support', module: 'support-compat'
-    }
+//    configurations {
+//        all*.exclude group: 'com.android.support', module: 'support-v4'
+//        all*.exclude group: 'com.android.support', module: 'support-compat'
+//    }
 }
 
 dependencies {
@@ -34,9 +34,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation project(':baselib')
-
+    implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["constraint-layout"]
+    implementation project(':baselib')
 //    implementation rootProject.ext.dependencies["butterknife"]
 //    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 //    implementation 'com.google.zxing:core:3.3.0'
