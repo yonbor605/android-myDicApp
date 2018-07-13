@@ -3,11 +3,14 @@ package com.yonbor.mydicapp.base;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -15,11 +18,11 @@ import android.widget.TextView;
 
 import com.yonbor.baselib.utils.EffectUtil;
 import com.yonbor.baselib.utils.ExitUtil;
+import com.yonbor.baselib.widget.StatusBarCompat;
 import com.yonbor.baselib.widget.loading.LoadViewHelper;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.app.AppApplication;
 import com.yonbor.mydicapp.app.AppConstant;
-
 
 
 /**
@@ -35,6 +38,7 @@ public abstract class BaseActivity extends com.yonbor.baselib.ui.base.BaseActivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        doBeforeSetcontentView();
         this.baseActivity = this;
         this.application = (AppApplication) getApplication();
         rxPermissions.setLogging(true);
@@ -53,30 +57,30 @@ public abstract class BaseActivity extends com.yonbor.baselib.ui.base.BaseActivi
 
     @Override
     public void handleHttpHeader(Intent data) {
-        if (data == null) return;
-        String code = data.getStringExtra("code");
-        if ("503".equals(code)) {
-            Intent intent = new Intent(getSSOLoginAction());
-            intent.putExtra("des", "您的账号在其他设备上登陆,请重新登录!");
-            intent.putExtra("title", "提示");
-            sendBroadcast(intent);
-        } else if ("409".equals(code)) {
-            //提示令牌失效
-            Intent intent = new Intent(getSSOLoginAction());
-            intent.putExtra("des", "您的账号登录信息已过期,请重新登录!");
-            intent.putExtra("title", "提示");
-            sendBroadcast(intent);
-        } else if ("404".equals(code)) {
-            //提示令牌失效
-            Intent intent = new Intent(getSSOLoginAction());
-            intent.putExtra("des", "您的账号登录信息已过期,请重新登录!");
-            intent.putExtra("title", "提示");
-            sendBroadcast(intent);
-
-        } else if ("504".equals(code)) {
-            //加密失败
-            showToast(R.string.request_fail);
-        }
+//        if (data == null) return;
+//        String code = data.getStringExtra("code");
+//        if ("503".equals(code)) {
+//            Intent intent = new Intent(getSSOLoginAction());
+//            intent.putExtra("des", "您的账号在其他设备上登陆,请重新登录!");
+//            intent.putExtra("title", "提示");
+//            sendBroadcast(intent);
+//        } else if ("409".equals(code)) {
+//            //提示令牌失效
+//            Intent intent = new Intent(getSSOLoginAction());
+//            intent.putExtra("des", "您的账号登录信息已过期,请重新登录!");
+//            intent.putExtra("title", "提示");
+//            sendBroadcast(intent);
+//        } else if ("404".equals(code)) {
+//            //提示令牌失效
+//            Intent intent = new Intent(getSSOLoginAction());
+//            intent.putExtra("des", "您的账号登录信息已过期,请重新登录!");
+//            intent.putExtra("title", "提示");
+//            sendBroadcast(intent);
+//
+//        } else if ("504".equals(code)) {
+//            //加密失败
+//            showToast(R.string.request_fail);
+//        }
     }
 
     // 单点登录
@@ -323,4 +327,37 @@ public abstract class BaseActivity extends com.yonbor.baselib.ui.base.BaseActivi
     protected void onPause() {
         super.onPause();
     }
+
+
+    /**
+     * 设置layout前配置
+     */
+    private void doBeforeSetcontentView() {
+        // 默认着色状态栏
+        SetStatusBarColor();
+    }
+
+
+    /**
+     * 着色状态栏（4.4以上系统有效）
+     */
+    protected void SetStatusBarColor() {
+        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.actionbar_bg1));
+    }
+
+    /**
+     * 着色状态栏（4.4以上系统有效）
+     */
+    protected void SetStatusBarColor(int color) {
+        StatusBarCompat.setStatusBarColor(this, color);
+    }
+
+    /**
+     * 沉浸状态栏（4.4以上系统有效）
+     */
+    protected void SetTranslanteBar() {
+        StatusBarCompat.translucentStatusBar(this);
+    }
+
+
 }
