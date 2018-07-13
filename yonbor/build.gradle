@@ -16,13 +16,10 @@ android {
     }
 
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         multiDexEnabled = true //方法数超过64k
 
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -30,14 +27,18 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi', 'armeabi-v7a', 'mips', 'mips64', 'x86', 'x86_64'
+        }
+
+        //************************统一配置****************************************//
+//        buildConfigField 'boolean', 'isSupportVisitor', 'true'//是否支持游客
+//        buildConfigField 'boolean', 'isChangePhone', 'true'//是否可以修改手机号
     }
 
     buildTypes {
         debug {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: ""]
-            manifestPlaceholders = [BAIDU_API_KEY_VALUE: "", UMENG_APPKEY_VALUE: ""]
-
-            buildConfigField 'String', 'BASE_URL', '""'
             buildConfigField 'boolean', 'IS_LOG', 'true'
             buildConfigField 'boolean', 'IS_DEBUG', 'true'
 
@@ -53,10 +54,6 @@ android {
         }
 
         release {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: ""]
-            manifestPlaceholders = [BAIDU_API_KEY_VALUE: "", UMENG_APPKEY_VALUE: ""]
-
-            buildConfigField 'String', 'BASE_URL', '""'
             buildConfigField 'boolean', 'IS_LOG', 'false'
             buildConfigField 'boolean', 'IS_DEBUG', 'false'
 
@@ -72,6 +69,28 @@ android {
         }
     }
 
+    flavorDimensions "default"//这个名字貌似随便取，也可以有多个，总之一定要有..
+    //解决多版本问题
+    productFlavors {
+
+        beauty {
+            dimension "default"
+            applicationId rootProject.ext.android.applicationId
+            versionCode rootProject.ext.android.versionCode
+            versionName rootProject.ext.android.versionName
+            manifestPlaceholders = [BAIDU_LBS         : "",
+                                    BAIDU_PUSH        : "",
+                                    APP_PACKAGE_NAME  : "com.yonbor.mydicapp",
+                                    JPUSH_APPKEY_VALUE: "",
+                                    UMENG_APPKEY      : ""
+            ]
+
+            //***************************网络环境配置********************************//
+            buildConfigField 'String', 'BASE_URL', '""'
+
+        }
+    }
+
 
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
@@ -81,6 +100,34 @@ android {
         aaptOptions.cruncherEnabled = false
         aaptOptions.useNewCruncher = false
     }
+
+    /**
+     * 使用gradle构建android的默认project结构
+     * src/main
+     ----java/
+     ----res/
+     ----assets/
+     ----aidl/
+     ----rs/
+     ----jni/
+     ----AndroidManifest.xml
+     */
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+
+        beauty {
+            java.srcDirs = ['src/main/java', 'src/beauty/java']
+            assets.srcDirs = ['src/main/assets']
+            res.srcDirs = ['src/main/res', 'src/beauty/res']
+        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
 
 }
 
@@ -99,7 +146,7 @@ dependencies {
     implementation 'cat.ereza:customactivityoncrash:1.5.0' // Crash全局异常捕获
     implementation rootProject.ext.dependencies["logger"]
     implementation 'com.alibaba:arouter-api:1.2.4'
-    annotationProcessor  'com.alibaba:arouter-compiler:1.1.4'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
 
 
 }

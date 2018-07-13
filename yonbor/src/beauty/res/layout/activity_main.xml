@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.yonbor.baselib.widget.viewpager.LRViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/flay"
+        android:layout_gravity="center"
+        android:background="@color/transparent" />
+
+    <FrameLayout
+        android:id="@+id/flay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent"
+        android:paddingBottom="5dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dip"
+            android:background="@color/divider2bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/lay1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/f1_n"
+                    style="@style/AppBottomMenuImg"
+                    android:src="@drawable/foot_b1" />
+
+                <ImageView
+                    android:id="@+id/f1_p"
+                    style="@style/AppBottomMenuImg"
+                    android:src="@drawable/foot_b1_b" />
+
+                <TextView
+                    android:id="@+id/f1_t_n"
+                    style="@style/AppBottomMenuTextN"
+                    android:layout_below="@+id/f1_n"
+                    android:text="首页" />
+
+                <TextView
+                    android:id="@+id/f1_t_p"
+                    style="@style/AppBottomMenuTextP"
+                    android:layout_below="@+id/f1_n"
+                    android:text="首页" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/lay3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/f3_n"
+                    style="@style/AppBottomMenuImg"
+                    android:src="@drawable/foot_b3" />
+
+                <ImageView
+                    android:id="@+id/f3_p"
+                    style="@style/AppBottomMenuImg"
+                    android:src="@drawable/foot_b3_b" />
+
+                <TextView
+                    android:id="@+id/f3_t_n"
+                    style="@style/AppBottomMenuTextN"
+                    android:layout_below="@+id/f3_n"
+                    android:text="消息" />
+
+                <TextView
+                    android:id="@+id/f3_t_p"
+                    style="@style/AppBottomMenuTextP"
+                    android:layout_below="@+id/f3_n"
+                    android:text="消息" />
+
+                <!--<com.seniors.baselib.widget.CountView
+                    android:id="@+id/foot_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/f3_p"
+                    android:layout_alignLeft="@+id/f3_p"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:visibility="gone"
+                    tools:text="22"
+                    tools:visibility="visible" />-->
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lay2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/f2_n"
+                    style="@style/AppBottomMenuImg"
+                    android:src="@drawable/foot_b2" />
+
+                <ImageView
+                    android:id="@+id/f2_p"
+                    style="@style/AppBottomMenuImg"
+                    android:src="@drawable/foot_b2_b" />
+
+                <TextView
+                    android:id="@+id/f2_t_n"
+                    style="@style/AppBottomMenuTextN"
+                    android:layout_below="@+id/f2_n"
+                    android:text="服务" />
+
+                <TextView
+                    android:id="@+id/f2_t_p"
+                    style="@style/AppBottomMenuTextP"
+                    android:layout_below="@+id/f2_n"
+                    android:text="服务" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/lay5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/f5_n"
+                    style="@style/AppBottomMenuImg"
+                    android:src="@drawable/foot_b4" />
+
+                <ImageView
+                    android:id="@+id/f5_p"
+                    style="@style/AppBottomMenuImg"
+                    android:src="@drawable/foot_b4_b" />
+
+                <TextView
+                    android:id="@+id/f5_t_n"
+                    style="@style/AppBottomMenuTextN"
+                    android:layout_below="@+id/f5_n"
+                    android:text="我的" />
+
+                <TextView
+                    android:id="@+id/f5_t_p"
+                    style="@style/AppBottomMenuTextP"
+                    android:layout_below="@+id/f5_n"
+                    android:text="我的" />
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+<!--    <com.seniors.baselib.widget.TipsView
+        android:id="@+id/tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+
+</RelativeLayout>
