@@ -5,21 +5,81 @@ android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
+    //配置应用的签名信息
+    signingConfigs {
+        release {
+            storeFile file('../yonbor.jks')
+            keyAlias 'yonbor'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+    }
 
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         multiDexEnabled = true //方法数超过64k
+
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
+
     buildTypes {
-        release {
+        debug {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: ""]
+            manifestPlaceholders = [BAIDU_API_KEY_VALUE: "", UMENG_APPKEY_VALUE: ""]
+
+            buildConfigField 'String', 'BASE_URL', '""'
+            buildConfigField 'boolean', 'IS_LOG', 'true'
+            buildConfigField 'boolean', 'IS_DEBUG', 'true'
+
+            debuggable true
+            // 是否zip对齐
+            zipAlignEnabled true
+            // 是否混淆
             minifyEnabled false
+            // 移除无用的资源文件,这个东西依赖于minifyEnabled，所以minifyEnabled也要为true才行
+            shrinkResources false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        release {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: ""]
+            manifestPlaceholders = [BAIDU_API_KEY_VALUE: "", UMENG_APPKEY_VALUE: ""]
+
+            buildConfigField 'String', 'BASE_URL', '""'
+            buildConfigField 'boolean', 'IS_LOG', 'false'
+            buildConfigField 'boolean', 'IS_DEBUG', 'false'
+
+            debuggable false
+            // 是否zip对齐
+            zipAlignEnabled true
+            // 是否混淆
+            minifyEnabled true
+            // 移除无用的资源文件,这个东西依赖于minifyEnabled，所以minifyEnabled也要为true才行
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    aaptOptions {
+        aaptOptions.cruncherEnabled = false
+        aaptOptions.useNewCruncher = false
     }
 
 }
@@ -36,8 +96,10 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 //    implementation 'com.google.zxing:core:3.3.0'
 //    implementation 'com.google.zxing:android-core:3.3.0'
-//    implementation 'com.alibaba:arouter-api:1.2.4'
-//    implementation 'com.alibaba:arouter-compiler:1.1.4'
+    implementation 'cat.ereza:customactivityoncrash:1.5.0' // Crash全局异常捕获
+    implementation rootProject.ext.dependencies["logger"]
+    implementation 'com.alibaba:arouter-api:1.2.4'
+    implementation 'com.alibaba:arouter-compiler:1.1.4'
 
 
 }

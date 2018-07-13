@@ -50,7 +50,7 @@ ext {
             "rxbroadcast"                 : "com.cantrowitz:rxbroadcast:2.0.0",
 
             //other
-            "logger"                      : "com.orhanobut:logger:1.15",
+            "logger"                      : "com.orhanobut:logger:2.2.0",
             "ultra-ptr"                   : "in.srain.cube:ultra-ptr:1.0.11",
             "recyclerview-swipe"          : "com.yanzhenjie:recyclerview-swipe:1.1.4",
             "fastjson"                    : "com.alibaba:fastjson:1.1.56.android",
