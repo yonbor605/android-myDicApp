@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">android-myDicApp</string>
+    <string name="request_fail">请求失败</string>
 </resources>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_normal_round_rect"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:text="温馨提示" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:padding="2dp"
+        android:scrollbars="vertical"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        tools:text="查询申请已提交，请耐心等待！\n\n系统会通过消息通知您查看查询结果。" />
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:maxLines="10"
+        android:padding="2dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/gray_text"
+        android:textSize="14sp"
+        tools:text="查询申请已提交，请耐心等待！" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/divider2bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="48dip"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#0048fc"
+            android:textSize="18sp"
+            android:visibility="visible" />
+
+        <View
+            android:id="@+id/tv_divider"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider2bg"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="0dp"
+            android:layout_height="48dip"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#0048fc"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

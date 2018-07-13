@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/actionbar_item"
+    style="@style/ActionBarItem"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    tools:background="@color/blue">
+
+    <FrameLayout
+        android:layout_width="30dp"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            tools:src="@drawable/action_progress" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lines="1"
+        android:maxWidth="100dp"
+        android:minWidth="45dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        tools:text="test" />
+</LinearLayout>

@@ -17,6 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <!--autolayout屏幕适配宽高配置-->
+        <meta-data
+            android:name="design_width"
+            android:value="1080" />
+        <meta-data
+            android:name="design_height"
+            android:value="1920" />
+        <!--autolayout屏幕适配宽高配置-->
     </application>
 
 </manifest>

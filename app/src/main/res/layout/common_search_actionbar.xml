@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_actionbar"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/actionbar_height"
+    android:background="@color/actionbar_bg1">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        style="@style/ActionBarItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/btn_back"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/iv_back"
+        android:background="@drawable/search_shape">
+
+        <ImageView
+            android:id="@+id/iv_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/btn_editclear"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/iv_clear"
+            android:background="@null"
+            android:drawableLeft="@drawable/icon_poisearch_search"
+            android:drawablePadding="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="搜索"
+            android:imeOptions="actionSearch"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:textColor="@color/black_text"
+            android:textColorHint="@color/h_text"
+            android:textSize="14dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

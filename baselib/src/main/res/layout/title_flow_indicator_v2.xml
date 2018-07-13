@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="-3dip"
+    android:layout_marginRight="-3dip"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tab_title"
+        style="@style/MyWidget.TabText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center_vertical"
+        tools:text="test"
+        tools:textColor="@color/black" />
+
+    <com.yonbor.baselib.widget.CountView
+        android:id="@+id/countView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tab_title"
+        android:layout_alignRight="@+id/tab_title"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="-15dp"
+        android:visibility="gone" />
+</RelativeLayout>

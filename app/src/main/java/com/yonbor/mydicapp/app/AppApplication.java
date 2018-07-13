@@ -10,8 +10,7 @@ public class AppApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        AppContext.initialize(getApplicationContext(),
-                AppConstant.HttpApiUrl, AppConstant.Http_Header_ACTION);
+        AppContext.initialize(getApplicationContext(), AppConstant.HttpApiUrl);
         appApplication = this;
     }
 }
