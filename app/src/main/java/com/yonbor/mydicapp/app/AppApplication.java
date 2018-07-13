@@ -64,7 +64,7 @@ public class AppApplication extends BaseApplication {
                     .showThreadInfo(true)  // (Optional) Whether to show thread info or not. Default true
                     .methodCount(2)         // (Optional) How many method line to show. Default 2
                     .methodOffset(5)        // (Optional) Hides internal method calls up to offset. Default 5
-                    .tag(AppConstant.APPLICATION_ID)   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                    .tag("Logger")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
                     .build();
             Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
         }

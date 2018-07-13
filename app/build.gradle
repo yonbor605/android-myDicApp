@@ -99,7 +99,7 @@ dependencies {
     implementation 'cat.ereza:customactivityoncrash:1.5.0' // Crash全局异常捕获
     implementation rootProject.ext.dependencies["logger"]
     implementation 'com.alibaba:arouter-api:1.2.4'
-    implementation 'com.alibaba:arouter-compiler:1.1.4'
+    annotationProcessor  'com.alibaba:arouter-compiler:1.1.4'
 
 
 }
