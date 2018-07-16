@@ -29,4 +29,5 @@ public class BaseFragment extends RxFragment {
     public void showToast(@StringRes int resId) {
         Toast.makeText(AppContext.getContext(), resId, Toast.LENGTH_SHORT).show();
     }
+
 }

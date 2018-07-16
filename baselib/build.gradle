@@ -51,11 +51,13 @@ dependencies {
 
     api rootProject.ext.dependencies["rxjava"]
     api rootProject.ext.dependencies["rxandroid"]
+
     api rootProject.ext.dependencies["rxbinding"]
     api rootProject.ext.dependencies["rxbinding-support-v4"]
     api rootProject.ext.dependencies["rxbinding-appcompat-v7"]
     api rootProject.ext.dependencies["rxbinding-design"]
     api rootProject.ext.dependencies["rxbinding-recyclerview-v7"]
+
     api rootProject.ext.dependencies["rxlifecycle"]
     // If you want to bind to Android-specific lifecycles
     api rootProject.ext.dependencies["rxlifecycle-android"]
@@ -63,6 +65,7 @@ dependencies {
     api rootProject.ext.dependencies["rxlifecycle-components"]
     // If you want to use Navi for providers
     api rootProject.ext.dependencies["rxlifecycle-navi"]
+
     api rootProject.ext.dependencies["rxpermissions"]
 //    implementation rootProject.ext.dependencies["rxbroadcast"]
 //    implementation rootProject.ext.dependencies["rx-preferences"]
