@@ -1,4 +1,4 @@
-package com.yonbor.mydicapp.base;
+package com.yonbor.mydicapp.activity.base;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;

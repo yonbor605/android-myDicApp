@@ -133,6 +133,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -145,8 +146,10 @@ dependencies {
 //    implementation 'com.google.zxing:android-core:3.3.0'
     implementation 'cat.ereza:customactivityoncrash:1.5.0' // Crash全局异常捕获
     implementation rootProject.ext.dependencies["logger"]
-    implementation 'com.alibaba:arouter-api:1.2.4'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    implementation rootProject.ext.dependencies["arouter"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 
 
 }

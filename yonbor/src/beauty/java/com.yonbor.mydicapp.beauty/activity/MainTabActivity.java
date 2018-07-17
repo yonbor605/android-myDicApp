@@ -21,7 +21,7 @@ import com.yonbor.baselib.utils.ExitUtil;
 import com.yonbor.baselib.widget.viewpager.LRViewPager;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.app.AppApplication;
-import com.yonbor.mydicapp.base.BaseActivity;
+import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.beauty.fragment.HomeFragment;
 import com.yonbor.mydicapp.beauty.fragment.MessageFragment;
 import com.yonbor.mydicapp.beauty.fragment.MyFragment;

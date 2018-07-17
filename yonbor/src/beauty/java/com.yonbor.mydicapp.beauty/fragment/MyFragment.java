@@ -62,9 +62,7 @@ public class MyFragment extends BaseFragment {
 
     @Override
     public void onDestroyView() {
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
+        unbinder.unbind();
         super.onDestroyView();
     }
 }

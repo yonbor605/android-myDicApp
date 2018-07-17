@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yonbor.mydicapp">
 
-
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -20,29 +19,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeS"
         tools:replace="android:allowBackup">
-
-        <activity android:name="com.yonbor.mydicapp.view.activity.SplashActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.yonbor.mydicapp.beauty.activity.MainTabActivity"
+            android:name=".beauty.activity.MainTabActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
-        <!--autolayout屏幕适配宽高配置-->
+        <activity android:name=".activity.app.home.code.CodeToolActivity"></activity>
+
+
+        <!-- autolayout屏幕适配宽高配置 -->
         <meta-data
             android:name="design_width"
             android:value="1080" />
         <meta-data
             android:name="design_height"
             android:value="1920" />
-        <!--autolayout屏幕适配宽高配置-->
+        <!-- autolayout屏幕适配宽高配置 -->
     </application>
 
 </manifest>

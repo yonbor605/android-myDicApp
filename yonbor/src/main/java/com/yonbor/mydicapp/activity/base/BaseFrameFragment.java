@@ -1,8 +1,4 @@
-package com.yonbor.mydicapp.base;
-
-/**
- * Created by Administrator on 2016/7/19.
- */
+package com.yonbor.mydicapp.activity.base;
 
 import android.view.View;
 import android.widget.Toast;
@@ -19,18 +15,19 @@ import in.srain.cube.views.ptr.header.StoreHouseHeader;
 import in.srain.cube.views.ptr.indicator.PtrIndicator;
 
 /**
- * 下拉刷新
+ * Created by Administrator on 2016/7/20.
  */
-public abstract class BaseFrameActivity extends BaseActivity{
+public abstract class BaseFrameFragment extends
+        BaseFragment {
     public PtrFrameLayout frame;
-
     String loadingText = "Loading...";
     protected static final int FIRST_PAGE = 1;
     protected int pageNo = FIRST_PAGE;
     protected int pageSize = 20;
 
-    public void initPtrFrameLayout(){
-        frame = (PtrFrameLayout) findViewById(R.id.ptrFrameLayout);
+    public void initPtrFrameLayout( View mainView){
+        frame = (PtrFrameLayout) mainView.findViewById(R.id.ptrFrameLayout);
+
         if(frame != null) {
             final StoreHouseHeader header = new StoreHouseHeader(baseContext);
             header.setPadding(0, DensityUtil.dip2px(baseContext, 15), 0, 0);
@@ -42,62 +39,58 @@ public abstract class BaseFrameActivity extends BaseActivity{
              */
             header.initWithString(loadingText);
 
-            if (frame != null) {
-                frame.addPtrUIHandler(new PtrUIHandler() {
+            frame.addPtrUIHandler(new PtrUIHandler() {
 
 
-                    @Override
-                    public void onUIReset(PtrFrameLayout frame) {
-                        header.initWithString(loadingText);
-                    }
+                @Override
+                public void onUIReset(PtrFrameLayout frame) {
+                    header.initWithString(loadingText);
+                }
 
-                    @Override
-                    public void onUIRefreshPrepare(PtrFrameLayout frame) {
+                @Override
+                public void onUIRefreshPrepare(PtrFrameLayout frame) {
 
 
-                    }
+                }
 
-                    @Override
-                    public void onUIRefreshBegin(PtrFrameLayout frame) {
+                @Override
+                public void onUIRefreshBegin(PtrFrameLayout frame) {
 
-                    }
+                }
 
-                    @Override
-                    public void onUIRefreshComplete(PtrFrameLayout frame) {
+                @Override
+                public void onUIRefreshComplete(PtrFrameLayout frame) {
 
-                    }
+                }
 
-                    @Override
-                    public void onUIPositionChange(PtrFrameLayout frame, boolean isUnderTouch, byte status, PtrIndicator ptrIndicator) {
+                @Override
+                public void onUIPositionChange(PtrFrameLayout frame, boolean isUnderTouch, byte status, PtrIndicator ptrIndicator) {
 
-                    }
-                });
+                }
+            });
 
-                frame.setHeaderView(header);
-                frame.addPtrUIHandler(header);
+            frame.setHeaderView(header);
+            frame.addPtrUIHandler(header);
 //        frame.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
 //                frame.autoRefresh(false);
 //            }
 //        }, 50);
-                frame.setPtrHandler(new PtrHandler() {
-                    @Override
-                    public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-//                    if (content instanceof LoadMoreListViewContainer){
-//                        content=((LoadMoreListViewContainer) content).getChildAt(0);
-//                    }
-                        return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-                    }
 
-                    @Override
-                    public void onRefreshBegin(final PtrFrameLayout frame) {
-                        onRefresh();
-                    }
-                });
-            }
+            frame.setPtrHandler(new PtrHandler() {
+                @Override
+                public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                    return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+                }
+
+                @Override
+                public void onRefreshBegin(final PtrFrameLayout frame) {
+                    onRefresh();
+                }
+            });
         }
-        View base=findViewById(R.id.loadLay);
+        View base=mainView.findViewById(R.id.loadLay);
         if (base!=null){
             viewHelper = new LoadViewHelper(base);
             viewHelper.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +123,7 @@ public abstract class BaseFrameActivity extends BaseActivity{
         if(isEmpty()){
             super.showErrorView();
         }else{
-            Toast.makeText(application, "加载失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(baseContext, "加载失败", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -141,7 +134,7 @@ public abstract class BaseFrameActivity extends BaseActivity{
         if(isEmpty()){
             super.showErrorView(error);
         }else{
-            Toast.makeText(application,error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(baseContext,error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -149,7 +142,14 @@ public abstract class BaseFrameActivity extends BaseActivity{
         if(isEmpty()){
             super.showEmptyView();
         }else{
-            Toast.makeText(application,"数据为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(baseContext,"数据为空", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void showEmptyView(View view){
+        if(isEmpty()){
+            super.showEmptyView(view);
+        }else{
+            Toast.makeText(baseContext,"数据为空", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -163,7 +163,6 @@ public abstract class BaseFrameActivity extends BaseActivity{
     public abstract void onRefresh();
     //加载更多操作
     protected void onLoadMore(){};
-
     //是否已经有数据
     public abstract boolean isEmpty();
 }

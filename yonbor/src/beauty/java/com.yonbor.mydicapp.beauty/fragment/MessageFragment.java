@@ -50,7 +50,6 @@ public class MessageFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         findView();
 
-
     }
 
     private void findView() {
@@ -72,9 +71,7 @@ public class MessageFragment extends BaseFragment {
 
     @Override
     public void onDestroyView() {
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
+        unbinder.unbind();
         super.onDestroyView();
     }
 

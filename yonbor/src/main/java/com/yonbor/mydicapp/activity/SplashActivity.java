@@ -1,4 +1,4 @@
-package com.yonbor.mydicapp.view.activity;
+package com.yonbor.mydicapp.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -10,10 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.orhanobut.logger.Logger;
 import com.yonbor.mydicapp.R;
-import com.yonbor.mydicapp.base.BaseActivity;
+import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.beauty.activity.MainTabActivity;
 
 import butterknife.BindView;

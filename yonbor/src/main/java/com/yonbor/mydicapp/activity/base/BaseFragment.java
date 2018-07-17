@@ -1,4 +1,4 @@
-package com.yonbor.mydicapp.base;
+package com.yonbor.mydicapp.activity.base;
 
 import android.content.Context;
 import android.os.Bundle;
