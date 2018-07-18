@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yonbor.mydicapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS"/>
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -19,7 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeS"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.SplashActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,10 +39,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.app.home.code.CodeToolActivity"></activity>
-
-
         <!-- autolayout屏幕适配宽高配置 -->
         <meta-data
             android:name="design_width"
@@ -43,6 +47,8 @@
             android:name="design_height"
             android:value="1920" />
         <!-- autolayout屏幕适配宽高配置 -->
+        <activity android:name=".activity.app.home.code.CodeToolActivity" />
+        <activity android:name=".activity.app.home.device.DeviceInfoActivity"></activity>
     </application>
 
 </manifest>

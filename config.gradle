@@ -46,7 +46,7 @@ ext {
             "rxlifecycle-components"    : "com.trello.rxlifecycle2:rxlifecycle-components:${dependVersion.rxlifecycle}",
             "rxlifecycle-navi"          : "com.trello.rxlifecycle2:rxlifecycle-navi:${dependVersion.rxlifecycle}",
             "rx-preferences"            : "com.f2prateek.rx.preferences2:rx-preferences:2.0.0-RC1",
-            "rxpermissions"             : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar",
+            "rxpermissions"             : "com.github.tbruyelle:rxpermissions:0.10.2",
             "rxbroadcast"               : "com.cantrowitz:rxbroadcast:2.0.0",
 
             // arouter

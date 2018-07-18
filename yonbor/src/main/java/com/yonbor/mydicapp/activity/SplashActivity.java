@@ -4,15 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.orhanobut.logger.Logger;
 import com.yonbor.mydicapp.R;
-import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.beauty.activity.MainTabActivity;
 
 import butterknife.BindView;
@@ -21,7 +20,7 @@ import butterknife.ButterKnife;
 /**
  * des:启动页
  */
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends Activity {
 
 
     @BindView(R.id.iv_logo)
@@ -38,10 +37,7 @@ public class SplashActivity extends BaseActivity {
     }
 
 
-
-    @Override
-    public void findView() {
-        SetTranslanteBar();
+    private void findView() {
         PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat("alpha", 0.3f, 1f);
         PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat("scaleX", 0.3f, 1f);
         PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat("scaleY", 0.3f, 1f);
@@ -55,12 +51,11 @@ public class SplashActivity extends BaseActivity {
         animatorSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-                Logger.d("动画开始");
+
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                Logger.d("动画结束");
                 MainTabActivity.startAction(SplashActivity.this);
                 finish();
             }

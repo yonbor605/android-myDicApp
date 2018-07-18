@@ -15,6 +15,7 @@ import com.yonbor.baselib.rxtool.RxRecyclerViewDividerTool;
 import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.app.home.code.CodeToolActivity;
+import com.yonbor.mydicapp.activity.app.home.device.DeviceInfoActivity;
 import com.yonbor.mydicapp.beauty.adapter.HomeAdapter;
 import com.yonbor.mydicapp.model.home.HomeItemVo;
 
@@ -89,7 +90,7 @@ public class HomeFragment extends BaseFragment {
         mData = new ArrayList<>();
         mData.add(new HomeItemVo("二维码与条形码的扫描与生成", R.drawable.circle_dynamic_generation_code, CodeToolActivity.class, "/home/code/codeTool"));
         mData.add(new HomeItemVo("动态生成码", R.drawable.circle_qr_code, CodeToolActivity.class, "/home/code/codeTool"));
-        mData.add(new HomeItemVo("设备信息", R.drawable.circle_device_info, CodeToolActivity.class, "/home/code/codeTool"));
+        mData.add(new HomeItemVo("设备信息", R.drawable.circle_device_info, DeviceInfoActivity.class, "/home/device/deviceInfo"));
         mData.add(new HomeItemVo("RxToast的使用", R.drawable.circle_toast, CodeToolActivity.class, "/home/code/codeTool"));
 
     }

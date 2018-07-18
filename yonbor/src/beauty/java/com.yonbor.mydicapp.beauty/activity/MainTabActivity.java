@@ -1,10 +1,13 @@
 package com.yonbor.mydicapp.beauty.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,8 +18,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.nineoldandroids.view.ViewHelper;
+import com.orhanobut.logger.Logger;
+import com.tbruyelle.rxpermissions2.Permission;
 import com.yonbor.baselib.utils.ExitUtil;
 import com.yonbor.baselib.widget.viewpager.LRViewPager;
 import com.yonbor.mydicapp.R;
@@ -29,8 +33,9 @@ import com.yonbor.mydicapp.beauty.fragment.MyFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.functions.Consumer;
 
-@Route(path = "/activity/MainTabActivity")
+
 public class MainTabActivity extends BaseActivity {
 
     public static boolean isForeground = false;
@@ -86,6 +91,7 @@ public class MainTabActivity extends BaseActivity {
         this.mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         application = (AppApplication) getApplication();
         findView();
+        requestNecessaryPermissions();
 //        changeIndex(2);
 //        mViewPager.setCurrentItem(2, false);
     }
@@ -247,5 +253,39 @@ public class MainTabActivity extends BaseActivity {
         isForeground = false;
         System.gc();
         super.onDestroy();
+    }
+
+    private void requestNecessaryPermissions() {
+        rxPermissions
+                .requestEach(
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_SMS)
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(Permission permission) throws Exception {
+                        if (permission.granted) {
+                            // `permission.name` is granted !
+                            Logger.d(permission.name + " is granted !");
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // Denied permission without ask never again
+                            Logger.d(permission.name + " is denied without ask never again !");
+                        } else {
+                            // Denied permission with ask never again
+                            // Need to go to the settings
+                            Logger.d(permission.name + " is denied with ask never again !");
+                            showDialog("提示", "请到应用信息-权限中手动开启权限", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // 应用信息页面
+                                    Intent intent = new Intent();
+                                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                    intent.setData(uri);
+                                    startActivity(intent);
+                                }
+                            },true);
+                        }
+                    }
+                });
     }
 }
