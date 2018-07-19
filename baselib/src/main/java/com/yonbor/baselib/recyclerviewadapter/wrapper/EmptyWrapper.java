@@ -5,8 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bsoft.baselib.recyleviewadapter.base.ViewHolder;
-import com.bsoft.baselib.recyleviewadapter.utils.WrapperUtils;
+import com.yonbor.baselib.recyclerviewadapter.base.ViewHolder;
+import com.yonbor.baselib.recyclerviewadapter.utils.WrapperUtils;
+
 
 /**
  * 

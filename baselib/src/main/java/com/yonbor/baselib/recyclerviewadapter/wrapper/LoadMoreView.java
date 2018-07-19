@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bsoft.baselib.R;
+import com.yonbor.baselib.R;
 
 
 /**
