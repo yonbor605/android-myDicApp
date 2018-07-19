@@ -37,6 +37,10 @@ android {
 //        buildConfigField 'boolean', 'isChangePhone', 'true'//是否可以修改手机号
     }
 
+    dataBinding{
+        enabled true
+    }
+
     buildTypes {
         debug {
             buildConfigField 'boolean', 'IS_LOG', 'true'
