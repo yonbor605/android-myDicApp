@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yonbor.mydicapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <supports-screens
         android:anyDensity="true"
@@ -48,7 +48,8 @@
             android:value="1920" />
         <!-- autolayout屏幕适配宽高配置 -->
         <activity android:name=".activity.app.home.code.CodeToolActivity" />
-        <activity android:name=".activity.app.home.device.DeviceInfoActivity"></activity>
+        <activity android:name=".activity.app.home.device.DeviceInfoActivity" />
+        <activity android:name=".activity.app.home.toast.RxToastActivity"/>
     </application>
 
 </manifest>

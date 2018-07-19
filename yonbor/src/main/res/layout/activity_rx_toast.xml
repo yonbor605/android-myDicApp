@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.yonbor.baselib.widget.AppActionBar
+        android:id="@+id/actionbar"
+        style="@style/AppActionBar" />
+
+    <RelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/dip_15"
+        android:paddingLeft="@dimen/dip_15"
+        android:paddingRight="@dimen/dip_15"
+        android:paddingTop="@dimen/dip_15">
+
+        <Button
+            android:id="@+id/button_error_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:background="@color/pink_acfun"
+            android:text="错误的提示" />
+
+        <Button
+            android:id="@+id/button_success_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/button_error_toast"
+            android:layout_margin="5dp"
+            android:background="@color/green_388e3c"
+            android:text="成功的提示" />
+
+        <Button
+            android:id="@+id/button_info_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/button_success_toast"
+            android:layout_margin="5dp"
+            android:background="@color/blue"
+            android:text="信息的提示" />
+
+        <Button
+            android:id="@+id/button_warning_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/button_info_toast"
+            android:layout_margin="5dp"
+            android:background="@color/warning"
+            android:text="警告的提示" />
+
+        <Button
+            android:id="@+id/button_normal_toast_wo_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/button_warning_toast"
+            android:layout_margin="5dp"
+            android:background="#666666"
+            android:text="普通的提示（没有ICON）" />
+
+        <Button
+            android:id="@+id/button_normal_toast_w_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/button_normal_toast_wo_icon"
+            android:layout_margin="5dp"
+            android:background="#666666"
+            android:text="普通的提示（有ICON）" />
+
+    </RelativeLayout>
+</LinearLayout>

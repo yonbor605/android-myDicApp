@@ -7,4 +7,11 @@
     <color name="actionbar_bg">#35b46e</color>
     <color name="actionbar_bg1">#35b46f</color>
     <color name="h_text">#aeaeaa</color>
+
+    <!--RxToast-->
+    <color name="pink_acfun">#FD4C5B</color><!-- Acfun主题色 -->
+    <color name="green_388e3c">#388E3C</color>
+    <color name="blue">#3F51B5</color>
+    <color name="warning">#FFA900</color>
+    <!--RxToast-->
 </resources>
