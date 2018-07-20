@@ -14,4 +14,17 @@
     <color name="blue">#3F51B5</color>
     <color name="warning">#FFA900</color>
     <!--RxToast-->
+
+    <color name="green_52BA97">#52BA97</color>
+
+    <color name="brown3">#eac1ac</color>
+    <color name="brown2">#b19282</color>
+    <color name="brown1">#766156</color>
+    <color name="brown">#7a583e</color>
+
+    <color name="white_eeeeee">#EEEEEE</color>
+    <color name="white_f0f0f0">#f0f0f0</color>
+
+    <color name="gray_cccccc">#CCCCCC</color>
+
 </resources>

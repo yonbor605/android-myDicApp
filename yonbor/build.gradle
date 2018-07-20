@@ -146,14 +146,13 @@ dependencies {
     implementation rootProject.ext.dependencies["constraint-layout"]
     implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-//    implementation 'com.google.zxing:core:3.3.0'
-//    implementation 'com.google.zxing:android-core:3.3.0'
     implementation 'cat.ereza:customactivityoncrash:1.5.0' // Crash全局异常捕获
     implementation rootProject.ext.dependencies["logger"]
     implementation rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     implementation rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
-
+    implementation 'com.google.zxing:core:3.3.0'
+    implementation 'com.google.zxing:android-core:3.3.0'
 
 }
