@@ -23,6 +23,13 @@ public class AppConstant {
 
 
 
+    public static final String SP_KEY_MADE_CODE = "SP_KEY_MADE_CODE";
+    public static final String SP_KEY_SCAN_CODE = "SP_KEY_SCAN_CODE";
+
+
+
+
+
 
 
 

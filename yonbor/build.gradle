@@ -37,7 +37,7 @@ android {
 //        buildConfigField 'boolean', 'isChangePhone', 'true'//是否可以修改手机号
     }
 
-    dataBinding{
+    dataBinding {
         enabled true
     }
 
