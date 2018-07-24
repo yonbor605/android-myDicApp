@@ -5,6 +5,11 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.facebook.common.logging.FLog;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.listener.RequestListener;
+import com.facebook.imagepipeline.listener.RequestLoggingListener;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
@@ -14,8 +19,10 @@ import com.yonbor.baselib.base.AppContext;
 import com.yonbor.mydicapp.utils.CommonUtil;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
@@ -66,6 +73,20 @@ public class AppApplication extends BaseApplication {
                     .methodOffset(5)        // (Optional) Hides internal method calls up to offset. Default 5
                     .build();
             Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
+        }
+
+        /**初始化Fresco */
+        if (AppConstant.IS_DEBUG) {
+            Set<RequestListener> requestListeners = new HashSet<>();
+            requestListeners.add(new RequestLoggingListener());
+            ImagePipelineConfig config = ImagePipelineConfig.newBuilder(getApplicationContext())
+                    // other setters
+                    .setRequestListeners(requestListeners)
+                    .build();
+            Fresco.initialize(getApplicationContext(), config);
+            FLog.setMinimumLoggingLevel(FLog.VERBOSE);
+        } else {
+            Fresco.initialize(getApplicationContext());
         }
 
 

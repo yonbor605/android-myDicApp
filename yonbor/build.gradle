@@ -90,7 +90,8 @@ android {
             ]
 
             //***************************网络环境配置********************************//
-            buildConfigField 'String', 'BASE_URL', '""'
+            buildConfigField 'String', 'BASE_URL', '"https://app.bshcn.com.cn/"'
+            buildConfigField 'String', 'HTTP_IMG_URL', '"http://image.bshcn.com.cn/upload/image/"'
 
         }
     }

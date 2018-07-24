@@ -8,6 +8,8 @@
     <color name="actionbar_bg1">#35b46f</color>
     <color name="h_text">#aeaeaa</color>
 
+    <color name="selectbg">#f2f2f2</color>
+
     <!--RxToast-->
     <color name="pink_acfun">#FD4C5B</color><!-- Acfun主题色 -->
     <color name="green_388e3c">#388E3C</color>

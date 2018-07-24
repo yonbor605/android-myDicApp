@@ -14,6 +14,7 @@ public class ConstantsHttp {
 
     //评价
     public static final String EVALUATE_HISTORY_LIST_SETVICE = "cas.evaluationService";
+    public static final String Health_News_Service = "cas.healthNewService";
 
 
 }

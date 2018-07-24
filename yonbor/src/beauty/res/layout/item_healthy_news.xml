@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_select"
+    android:padding="5dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        fresco:actualImageScaleType="focusCrop"
+        fresco:fadeDuration="300"
+        fresco:failureImage="@drawable/pic_default"
+        fresco:failureImageScaleType="fitCenter"
+        fresco:placeholderImage="@drawable/pic_default"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:retryImage="@drawable/pic_default"
+        fresco:retryImageScaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_toLeftOf="@+id/img"
+        android:ellipsize="end"
+        android:lines="2"
+        android:maxLines="2"
+        android:textSize="16sp"
+        tools:text="啊额分嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡嗡" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_toLeftOf="@+id/img"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img"
+            android:layout_toRightOf="@+id/img"
+            android:layout_weight="1.5"
+            android:singleLine="true"
+            android:textColor="@color/gray_text"
+            android:textSize="10sp"
+            tools:text="张庆伟 主任医生" />
+
+        <TextView
+            android:id="@+id/views"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:textColor="@color/gray_text"
+            android:textSize="10sp"
+            tools:text="阅读量 109" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:textColor="@color/gray_text"
+            android:textSize="10sp"
+            tools:text="2017-03-23" />
+    </LinearLayout>
+
+</RelativeLayout>

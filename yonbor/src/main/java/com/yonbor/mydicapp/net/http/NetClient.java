@@ -12,6 +12,7 @@ import com.yonbor.baselib.model.http.ResultModel;
 import com.yonbor.baselib.ui.base.BaseActivity;
 import com.yonbor.baselib.utils.MD5;
 import com.yonbor.baselib.utils.NetworkUtil;
+import com.yonbor.mydicapp.app.AppConstant;
 import com.yonbor.mydicapp.app.ConstantsHttp;
 
 import org.reactivestreams.Subscription;
@@ -79,7 +80,7 @@ public class NetClient {
     @android.support.annotation.NonNull
     private static ArrayMap<String, String> addProductName(ArrayMap<String, String> header) {
         if (header == null) header = new ArrayMap<>();
-//        header.put("B-Product-Code", Constants.Product_Name);
+        header.put("B-Product-Code", AppConstant.Product_Name);
         return header;
     }
 
