@@ -83,13 +83,13 @@
                     android:id="@+id/f2_t_n"
                     style="@style/AppBottomMenuTextN"
                     android:layout_below="@+id/f2_n"
-                    android:text="消息" />
+                    android:text="服务" />
 
                 <TextView
                     android:id="@+id/f2_t_p"
                     style="@style/AppBottomMenuTextP"
                     android:layout_below="@+id/f2_n"
-                    android:text="消息" />
+                    android:text="服务" />
             </RelativeLayout>
 
             <RelativeLayout

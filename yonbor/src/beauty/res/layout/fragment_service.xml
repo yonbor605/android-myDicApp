@@ -10,12 +10,9 @@
         android:id="@+id/actionbar"
         style="@style/AppActionBar"></com.yonbor.baselib.widget.AppActionBar>
 
-    <TextView
+    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="消息"
-        android:textColor="@color/red"
-        android:textSize="@dimen/textsize_large" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

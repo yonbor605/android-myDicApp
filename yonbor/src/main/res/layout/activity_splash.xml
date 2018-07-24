@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:layout_marginTop="120dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -22,5 +22,33 @@
         android:layout_centerInParent="true"
         android:padding="10dp"
         android:text="@string/app_name"
-        android:textColor="@color/actionbar_bg" />
+        android:textColor="#42B1A6" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dip"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/copyright"
+            android:textColor="#e5e5e5"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="版权所有 Mr Yin"
+            android:textColor="#e5e5e5"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
 </RelativeLayout>

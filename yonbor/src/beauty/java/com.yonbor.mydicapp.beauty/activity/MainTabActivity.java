@@ -27,7 +27,7 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.app.AppApplication;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.beauty.fragment.HomeFragment;
-import com.yonbor.mydicapp.beauty.fragment.MessageFragment;
+import com.yonbor.mydicapp.beauty.fragment.ServiceFragment;
 import com.yonbor.mydicapp.beauty.fragment.MyFragment;
 
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class MainTabActivity extends BaseActivity {
         selectedFoots2.add((TextView) findViewById(R.id.f2_t_p));
         selectedFoots2.add((TextView) findViewById(R.id.f3_t_p));
 
-        MessageFragment messgaeFragment = new MessageFragment();
+        ServiceFragment messgaeFragment = new ServiceFragment();
         mFragmentList.add(new HomeFragment());
         mFragmentList.add(messgaeFragment);
         mFragmentList.add(new MyFragment());
