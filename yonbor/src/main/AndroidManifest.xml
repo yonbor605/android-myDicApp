@@ -10,12 +10,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 开启闪光灯权限 -->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-
 
     <supports-screens
         android:anyDensity="true"
@@ -60,7 +58,8 @@
         <activity android:name=".activity.app.home.code.CodeToolActivity" />
         <activity android:name=".activity.app.home.device.DeviceInfoActivity" />
         <activity android:name=".activity.app.home.toast.RxToastActivity" />
-        <activity android:name=".activity.app.home.code.ScanActivity"></activity>
+        <activity android:name=".activity.app.home.code.ScanActivity" />
+        <activity android:name=".activity.app.home.code.CreateQRCodeActivity"></activity>
     </application>
 
 </manifest>

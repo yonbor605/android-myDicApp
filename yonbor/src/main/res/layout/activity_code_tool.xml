@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:background="@color/green_52BA97"
+        android:background="@color/actionbar_bg"
         android:clipToPadding="true"
         android:fitsSystemWindows="true"
         android:orientation="vertical">

@@ -90,7 +90,7 @@ public class HomeFragment extends BaseFragment {
     private void initData() {
         mData = new ArrayList<>();
         mData.add(new HomeItemVo("二维码与条形码的扫描与生成", R.drawable.circle_dynamic_generation_code, CodeToolActivity.class, "/home/code/codeTool"));
-        mData.add(new HomeItemVo("动态生成码", R.drawable.circle_qr_code, CodeToolActivity.class, "/home/code/codeTool"));
+        mData.add(new HomeItemVo("动态生成码", R.drawable.circle_qr_code, CodeToolActivity.class, "/home/code/creatQRCode"));
         mData.add(new HomeItemVo("设备信息", R.drawable.circle_device_info, DeviceInfoActivity.class, "/home/device/deviceInfo"));
         mData.add(new HomeItemVo("RxToast的使用", R.drawable.circle_toast, RxToastActivity.class, "/home/toast/rxToast"));
 
