@@ -1,12 +1,11 @@
-package com.yonbor.mydicapp.utils;
+package com.yonbor.baselib.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.yonbor.baselib.utils.SharedPreferencesUtil;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2018/7/23.
+ * yonbor605
  */
 public class LocalDataUtil {
 
