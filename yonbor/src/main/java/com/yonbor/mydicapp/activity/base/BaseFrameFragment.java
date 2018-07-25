@@ -25,10 +25,10 @@ public abstract class BaseFrameFragment extends
     protected int pageNo = FIRST_PAGE;
     protected int pageSize = 20;
 
-    public void initPtrFrameLayout( View mainView){
+    public void initPtrFrameLayout(View mainView) {
         frame = (PtrFrameLayout) mainView.findViewById(R.id.ptrFrameLayout);
 
-        if(frame != null) {
+        if (frame != null) {
             final StoreHouseHeader header = new StoreHouseHeader(baseContext);
             header.setPadding(0, DensityUtil.dip2px(baseContext, 15), 0, 0);
             header.setTextColor(R.color.gray);
@@ -90,8 +90,8 @@ public abstract class BaseFrameFragment extends
                 }
             });
         }
-        View base=mainView.findViewById(R.id.loadLay);
-        if (base!=null){
+        View base = mainView.findViewById(R.id.loadLay);
+        if (base != null) {
             viewHelper = new LoadViewHelper(base);
             viewHelper.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -102,67 +102,71 @@ public abstract class BaseFrameFragment extends
         }
     }
 
-    public void setEnable(boolean flag){
-        if(frame != null)
+    public void setEnable(boolean flag) {
+        if (frame != null)
             frame.setEnabled(flag);
     }
 
-    public void refreshComplete(){
-        if(frame != null)
+    public void refreshComplete() {
+        if (frame != null)
             frame.refreshComplete();
     }
 
-    public boolean isFirstPage(){
+    public boolean isFirstPage() {
         return pageNo == FIRST_PAGE;
     }
 
     public void showErrorView() {
-        if(pageNo != FIRST_PAGE){
-            pageNo --;
+        if (pageNo != FIRST_PAGE) {
+            pageNo--;
         }
-        if(isEmpty()){
+        if (isEmpty()) {
             super.showErrorView();
-        }else{
+        } else {
             Toast.makeText(baseContext, "加载失败", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void showErrorView(String error) {
-        if(pageNo != FIRST_PAGE){
-            pageNo --;
+        if (pageNo != FIRST_PAGE) {
+            pageNo--;
         }
-        if(isEmpty()){
+        if (isEmpty()) {
             super.showErrorView(error);
-        }else{
-            Toast.makeText(baseContext,error, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(baseContext, error, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void showEmptyView() {
-        if(isEmpty()){
+        if (isEmpty()) {
             super.showEmptyView();
-        }else{
-            Toast.makeText(baseContext,"数据为空", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(baseContext, "数据为空", Toast.LENGTH_SHORT).show();
         }
     }
-    public void showEmptyView(View view){
-        if(isEmpty()){
+
+    public void showEmptyView(View view) {
+        if (isEmpty()) {
             super.showEmptyView(view);
-        }else{
-            Toast.makeText(baseContext,"数据为空", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(baseContext, "数据为空", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void showLoadingView() {
-        if(isEmpty()){
+        if (isEmpty()) {
             super.showLoadingView();
         }
     }
 
     //刷新操作
     public abstract void onRefresh();
+
     //加载更多操作
-    protected void onLoadMore(){};
+    protected void onLoadMore() {
+    };
+
     //是否已经有数据
     public abstract boolean isEmpty();
 }

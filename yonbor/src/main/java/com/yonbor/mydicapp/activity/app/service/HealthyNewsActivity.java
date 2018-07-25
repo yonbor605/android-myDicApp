@@ -99,7 +99,7 @@ public class HealthyNewsActivity extends BaseActivity {
                             if (null != result.data && result.data.size() > 0) {
                                 initTags(result.data);
                                 return;
-                            }else{
+                            } else {
                                 initTags(new ArrayList<TagVo>());
                             }
                         } else {
@@ -125,7 +125,6 @@ public class HealthyNewsActivity extends BaseActivity {
         //动态添加标签
         for (TagVo tagVo : tags) {
             tagVos.add(tagVo);
-//            fragments.add(HealthyNewsFragment.newInstance(tagVo.tagCode));
             HealthyNewsFragment oneFragment = new HealthyNewsFragment();
             Bundle bundle = new Bundle();
             bundle.putString("tagCode", tagVo.tagCode);
@@ -181,19 +180,4 @@ public class HealthyNewsActivity extends BaseActivity {
         super.onDestroy();
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == AppConstant.requestCode && resultCode == RESULT_OK) {
-//            String catogory = data.getStringExtra(AppConstant.KEY);
-//            for (int i = 0; i < fragments.size(); i++) {
-//                Fragment fragment = fragments.get(i);
-//                if (fragment instanceof HealthyNewsFragment) {
-//                    if (i == 0 || ((HealthyNewsFragment) fragment).getTagCode().equals(catogory)) {//最新资讯和指定类别刷新
-//                        ((HealthyNewsFragment) fragment).loadData(false);
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
