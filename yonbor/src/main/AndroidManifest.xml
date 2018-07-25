@@ -47,6 +47,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <!-- autolayout屏幕适配宽高配置 -->
         <meta-data
             android:name="design_width"
@@ -55,11 +56,37 @@
             android:name="design_height"
             android:value="1920" />
         <!-- autolayout屏幕适配宽高配置 -->
-        <activity android:name=".activity.app.home.code.CodeToolActivity" />
-        <activity android:name=".activity.app.home.device.DeviceInfoActivity" />
-        <activity android:name=".activity.app.home.toast.RxToastActivity" />
-        <activity android:name=".activity.app.home.code.ScanActivity" />
-        <activity android:name=".activity.app.home.code.CreateQRCodeActivity"></activity>
+
+        <activity
+            android:name=".activity.app.home.code.CodeToolActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.app.home.device.DeviceInfoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.app.home.toast.RxToastActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.app.home.code.ScanActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.app.home.code.CreateQRCodeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.common.WebActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.app.service.HealthyNewsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

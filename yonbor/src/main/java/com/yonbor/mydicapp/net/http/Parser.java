@@ -5,9 +5,9 @@ import android.text.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.orhanobut.logger.Logger;
+import com.yonbor.baselib.log.AppLogger;
 import com.yonbor.baselib.model.http.ResultModel;
 import com.yonbor.baselib.model.http.Statue;
-import com.yonbor.baselib.utils.AppLogger;
 
 
 /**

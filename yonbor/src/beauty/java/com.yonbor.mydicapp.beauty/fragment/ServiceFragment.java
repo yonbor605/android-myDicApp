@@ -1,5 +1,6 @@
 package com.yonbor.mydicapp.beauty.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.ArrayMap;
@@ -15,6 +16,9 @@ import com.yonbor.baselib.recyclerviewadapter.MultiItemTypeAdapter;
 import com.yonbor.baselib.recyclerviewadapter.base.ViewHolder;
 import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
+import com.yonbor.mydicapp.activity.app.service.HealthyNewsActivity;
+import com.yonbor.mydicapp.activity.common.WebActivity;
+import com.yonbor.mydicapp.app.AppConstant;
 import com.yonbor.mydicapp.app.ConstantsHttp;
 import com.yonbor.mydicapp.beauty.adapter.HealthNewsAdapter;
 import com.yonbor.mydicapp.model.service.HealthyNewsVo;
@@ -87,26 +91,33 @@ public class ServiceFragment extends BaseFragment {
                 new NetClient.Listener<ArrayList<HealthyNewsVo>>() {
                     @Override
                     public void onPrepare() {
-
+                        actionbar.startTitleRefresh();
+                        showLoadingView();
                     }
 
                     @Override
                     public void onSuccess(ResultModel<ArrayList<HealthyNewsVo>> result) {
+                        actionbar.endTitleRefresh();
+                        refreshComplete();
                         if (result.isSuccess()) {
                             if (!result.isEmpty()) {
+                                restoreView();
                                 adapter.setDatas(result.data);
-                                Logger.e("result",result.data);
+                                Logger.e("result", result.data);
                             } else {
-
+                                showEmptyView();
                             }
                         } else {
                             onFaile(null);
+                            showToast(result.getToast());
                         }
                     }
 
                     @Override
                     public void onFaile(Throwable t) {
-
+                        actionbar.endTitleRefresh();
+                        refreshComplete();
+                        showErrorView();
                     }
                 });
     }
@@ -142,7 +153,8 @@ public class ServiceFragment extends BaseFragment {
 
             @Override
             public void performAction(View view) {
-
+                Intent intent = new Intent(baseActivity, HealthyNewsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -162,11 +174,11 @@ public class ServiceFragment extends BaseFragment {
     MultiItemTypeAdapter.OnItemClickListener adapterListener = new MultiItemTypeAdapter.OnItemClickListener<HealthyNewsVo>() {
         @Override
         public void onItemClick(ViewGroup parent, View view, ViewHolder holder, List<HealthyNewsVo> datas, int position) {
-//            datas.get(position).readCount += 1;
-//            Intent web = new Intent(baseContext, WebActivity.class);
-//            web.putExtra("title", "资讯详情");
-//            web.putExtra("url", AppConstant.BASE_URL + "h5/healthnews.html?id=" + datas.get(position).id + "&token=1");
-//            startActivity(web);
+            datas.get(position).readCount += 1;
+            Intent web = new Intent(baseContext, WebActivity.class);
+            web.putExtra("title", "资讯详情");
+            web.putExtra("url", AppConstant.BASE_URL + "h5/healthnews.html?id=" + datas.get(position).id + "&token=1");
+            startActivity(web);
         }
 
         @Override

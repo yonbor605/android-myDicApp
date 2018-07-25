@@ -85,4 +85,6 @@ dependencies {
     api 'com.nineoldandroids:library:2.4.0'
     //autolayout
     api rootProject.ext.dependencies["autolayout"]
+
+    api rootProject.ext.dependencies["logger"]
 }

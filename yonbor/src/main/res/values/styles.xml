@@ -42,4 +42,22 @@
         <item name="android:textSize">50sp</item>
     </style>
 
+    <!--健康资讯tabLayout-->
+    <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
+        <!--<item name="tabMinWidth">150dp</item>-->
+        <item name="tabIndicatorColor">@color/actionbar_bg</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">0dp</item>
+        <item name="tabPaddingEnd">0dp</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="tabTextAppearance">@style/CustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/actionbar_bg</item>
+    </style>
+
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray_text</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
 </resources>

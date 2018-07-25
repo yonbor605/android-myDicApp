@@ -3,7 +3,6 @@ package com.yonbor.baselib.model.http;
 import java.util.Collection;
 
 
-
 public class ResultModel<T> {
 
     public T data;
