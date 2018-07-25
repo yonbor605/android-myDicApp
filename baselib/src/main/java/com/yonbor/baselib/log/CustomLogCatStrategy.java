@@ -7,9 +7,8 @@ import android.util.Log;
 import com.orhanobut.logger.LogStrategy;
 
 /**
- * 适用于com.orhanobut:logger:2.2.0或是更新版本
- * 解决日志打印错位不整齐的问题
- * @Description:
+ * 适用于com.orhanobut:logger:2.2.0或更新版本
+ * @Description: 解决日志打印错位不整齐的问题
  * @Author: YinYongbo
  * @Time: 2018/7/25 11:27
  */
