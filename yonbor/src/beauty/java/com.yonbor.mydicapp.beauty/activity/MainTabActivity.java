@@ -100,7 +100,7 @@ public class MainTabActivity extends BaseActivity {
     @Override
     public void findView() {
         mViewPager = (LRViewPager) findViewById(R.id.viewPager);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(2);
         lay1 = (RelativeLayout) findViewById(R.id.lay1);
         lay2 = (RelativeLayout) findViewById(R.id.lay2);
         lay3 = (RelativeLayout) findViewById(R.id.lay3);
