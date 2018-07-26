@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def releaseTime() {
+    return new Date().format("yyyyMMddHHmm")
+}
+
 android {
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -39,6 +43,22 @@ android {
 
     dataBinding {
         enabled true
+    }
+
+    //apk重命名
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            def fileName
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                if (variant.buildType.name.equals('release')) {
+                    fileName = "${project.getName()}-${variant.flavorName}_v${variant.versionName}.apk"
+                } else if (variant.buildType.name.equals('debug')) {
+                    fileName = "${project.getName()}-${variant.flavorName}-${variant.buildType.name}_v${variant.versionName}-${releaseTime()}.apk"
+                }
+                outputFileName = fileName
+            }
+        }
     }
 
     buildTypes {
