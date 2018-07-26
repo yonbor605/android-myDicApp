@@ -60,4 +60,12 @@
         <item name="textAllCaps">false</item>
     </style>
 
+
+    <!--公共的横线-->
+    <style name="divider2bg_line_06dp_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp0_6</item>
+        <item name="android:background">@color/divider2bg</item>
+    </style>
+
 </resources>
