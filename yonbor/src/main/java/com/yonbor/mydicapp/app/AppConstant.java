@@ -16,6 +16,8 @@ public class AppConstant {
 
     public static final String Product_Name = "hcn.chaoyang.patient_android";//产品编码
 
+    public static final String LINE_SEPARATOR = "\n";
+
     //http header里事件处理
     public static final String Http_Header_ACTION = APPLICATION_ID + ".http.header.action";
     // 退出

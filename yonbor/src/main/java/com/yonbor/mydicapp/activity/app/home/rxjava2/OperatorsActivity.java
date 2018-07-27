@@ -47,6 +47,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startMapActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/mapExample").navigation();
     }
 
     public void startZipActivity(View view) {

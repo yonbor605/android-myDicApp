@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dip_15"
-        android:text="doSomeWork"
+        android:text="doSomething"
         android:textAllCaps="false"
         android:textColor="@android:color/black" />
 
@@ -27,7 +27,6 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/dip_15"
             android:textColor="@android:color/black" />
-
     </ScrollView>
 
 </LinearLayout>
