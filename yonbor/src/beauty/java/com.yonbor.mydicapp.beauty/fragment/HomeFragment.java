@@ -17,6 +17,7 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.app.home.code.CodeToolActivity;
 import com.yonbor.mydicapp.activity.app.home.code.CreateQRCodeActivity;
 import com.yonbor.mydicapp.activity.app.home.device.DeviceInfoActivity;
+import com.yonbor.mydicapp.activity.app.home.rxjava2.Rxjava2SampleActivity;
 import com.yonbor.mydicapp.activity.app.home.toast.RxToastActivity;
 import com.yonbor.mydicapp.beauty.adapter.HomeAdapter;
 import com.yonbor.mydicapp.model.home.HomeItemVo;
@@ -94,6 +95,7 @@ public class HomeFragment extends BaseFragment {
         mData.add(new HomeItemVo("动态生成码", R.drawable.circle_qr_code, CreateQRCodeActivity.class, "/home/code/creatQRCode"));
         mData.add(new HomeItemVo("设备信息", R.drawable.circle_device_info, DeviceInfoActivity.class, "/home/device/deviceInfo"));
         mData.add(new HomeItemVo("RxToast的使用", R.drawable.circle_toast, RxToastActivity.class, "/home/toast/rxToast"));
+        mData.add(new HomeItemVo("Rxjava2在Android中的使用",R.drawable.circle_rxjava, Rxjava2SampleActivity.class,"/home/rxjava2/rxjava2Sample"));
 
     }
 

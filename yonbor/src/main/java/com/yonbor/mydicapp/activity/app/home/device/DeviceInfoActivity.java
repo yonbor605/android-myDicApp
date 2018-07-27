@@ -1,17 +1,12 @@
 package com.yonbor.mydicapp.activity.app.home.device;
 
-import android.Manifest;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.tbruyelle.rxpermissions2.Permission;
 import com.yonbor.baselib.rxtool.RxDeviceTool;
 import com.yonbor.baselib.utils.EffectUtil;
 import com.yonbor.baselib.widget.AppActionBar;
@@ -20,7 +15,6 @@ import com.yonbor.mydicapp.activity.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.functions.Consumer;
 
 @Route(path = "/home/device/deviceInfo")
 public class DeviceInfoActivity extends BaseActivity {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.app.home.rxjava2.Rxjava2SampleActivity">
+
+    <com.yonbor.baselib.widget.AppActionBar
+        android:id="@+id/actionbar"
+        style="@style/AppActionBar" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dip_10"
+        android:background="@drawable/btn_green"
+        android:onClick="startOperatorsActivity"
+        android:text="操作符（operators）"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_medium" />
+
+</LinearLayout>
