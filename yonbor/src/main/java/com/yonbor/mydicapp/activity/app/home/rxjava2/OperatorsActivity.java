@@ -67,6 +67,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startIntervalActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/intervalExample").navigation();
     }
 
     public void startSingleObserverActivity(View view) {
