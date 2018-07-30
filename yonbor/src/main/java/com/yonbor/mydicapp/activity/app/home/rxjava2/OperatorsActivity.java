@@ -63,6 +63,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startTimerActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/timerExample").navigation();
     }
 
     public void startIntervalActivity(View view) {

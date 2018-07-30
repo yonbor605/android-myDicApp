@@ -11,7 +11,8 @@ import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.app.AppConstant;
-import com.yonbor.mydicapp.model.home.rxjava2.User;
+
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -19,15 +20,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-
-/* Using take operator, it only emits
- * required number of values. here only 3 out of 5
- * take(n)操作，仅发射前n个数据。
+/*
+ * simple example using timer to do something after 2 second
+ * Observable的静态方法，它会创建Observable，并在等待指定的时间之后发射唯一的事件。
+ * 从运行结果可以发现即使我们没有发射任何数据，也会有一个默认值回调到onNext方法当中
  */
-@Route(path = "/home/rxjava2/takeExample")
-public class TakeExampleActivity extends BaseActivity {
+@Route(path = "/home/rxjava2/timerExample")
+public class TimerExampleActivity extends BaseActivity {
 
-    private static final String TAG = TakeExampleActivity.class.getSimpleName();
+    private static final String TAG = TimerExampleActivity.class.getSimpleName();
     private Button btn;
     private TextView textView;
 
@@ -43,7 +44,7 @@ public class TakeExampleActivity extends BaseActivity {
     @Override
     public void findView() {
         findActionBar();
-        actionBar.setTitle("Take");
+        actionBar.setTitle("Timer");
         actionBar.setBackAction(new AppActionBar.Action() {
 
             @Override
@@ -81,17 +82,16 @@ public class TakeExampleActivity extends BaseActivity {
                 .subscribeOn(Schedulers.io())
                 // Be notified on the main thread
                 .observeOn(AndroidSchedulers.mainThread())
-                .take(3)
                 .subscribe(getObserver());
 
     }
 
-    private Observable<Integer> getObservable() {
-        return Observable.just(1, 2, 3, 4, 5);
+    private Observable<? extends Long> getObservable() {
+        return Observable.timer(2, TimeUnit.SECONDS);
     }
 
-    private Observer<Integer> getObserver() {
-        return new Observer<Integer>() {
+    private Observer<Long> getObserver() {
+        return new Observer<Long>() {
             @Override
             public void onSubscribe(Disposable d) {
                 textView.append("---onSubscribe---" + d.isDisposed());
@@ -100,10 +100,10 @@ public class TakeExampleActivity extends BaseActivity {
             }
 
             @Override
-            public void onNext(Integer value) {
-                textView.append("---onNext---" + value);
+            public void onNext(Long aLong) {
+                textView.append("---onNext---" + aLong);
                 textView.append(AppConstant.LINE_SEPARATOR);
-                Log.d(TAG, "---onNext---" + value);
+                Log.d(TAG, "---onNext---" + aLong);
             }
 
             @Override
