@@ -109,6 +109,10 @@
             android:name=".activity.app.home.rxjava2.DisposableExampleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.app.home.rxjava2.TakeExampleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
