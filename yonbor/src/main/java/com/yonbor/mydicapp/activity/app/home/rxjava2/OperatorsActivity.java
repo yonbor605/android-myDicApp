@@ -51,6 +51,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startZipActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/zipExample").navigation();
     }
 
     public void startDisposableActivity(View view) {
