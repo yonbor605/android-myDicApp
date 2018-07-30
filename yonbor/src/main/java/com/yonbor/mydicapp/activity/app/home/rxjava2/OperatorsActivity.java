@@ -71,6 +71,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startSingleObserverActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/singleObserverExample").navigation();
     }
 
     public void startCompletableObserverActivity(View view) {
