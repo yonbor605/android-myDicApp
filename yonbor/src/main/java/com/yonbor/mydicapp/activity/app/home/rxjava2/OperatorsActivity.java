@@ -55,6 +55,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startDisposableActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/disposableExample").navigation();
     }
 
     public void startTakeActivity(View view) {
