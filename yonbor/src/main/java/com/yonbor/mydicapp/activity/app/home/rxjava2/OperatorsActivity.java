@@ -87,6 +87,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startBufferActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/bufferExample").navigation();
     }
 
     public void startFilterActivity(View view) {
