@@ -83,6 +83,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startReduceActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/reduceExample").navigation();
     }
 
     public void startBufferActivity(View view) {
