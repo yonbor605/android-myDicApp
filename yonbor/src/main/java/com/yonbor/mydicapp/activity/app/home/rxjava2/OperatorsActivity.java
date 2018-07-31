@@ -79,6 +79,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startFlowableActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/flowableExample").navigation();
     }
 
     public void startReduceActivity(View view) {
