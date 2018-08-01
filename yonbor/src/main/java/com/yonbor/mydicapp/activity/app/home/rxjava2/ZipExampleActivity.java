@@ -12,7 +12,6 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.app.AppConstant;
 import com.yonbor.mydicapp.cache.ModelCache;
-import com.yonbor.mydicapp.model.home.rxjava2.ApiUser;
 import com.yonbor.mydicapp.model.home.rxjava2.User;
 
 import java.util.List;
@@ -24,10 +23,9 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-/*
+/**
  * Here we are getting two user list
  * One, the list of basketball fans
  * Another one, the list of football fans

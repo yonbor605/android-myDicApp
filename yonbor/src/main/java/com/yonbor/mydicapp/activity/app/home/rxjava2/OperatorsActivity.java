@@ -115,6 +115,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startDeferActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/deferExample").navigation();
     }
 
     public void startDistinctActivity(View view) {

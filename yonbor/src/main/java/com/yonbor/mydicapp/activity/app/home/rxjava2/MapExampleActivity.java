@@ -26,7 +26,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-/*
+/**
  * Here we are getting ApiUser Object from api server
  * then we are converting it into User Object because
  * may be our database support User Not ApiUser Object

@@ -11,23 +11,13 @@ import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.app.AppConstant;
-import com.yonbor.mydicapp.cache.ModelCache;
-import com.yonbor.mydicapp.model.home.rxjava2.ApiUser;
-import com.yonbor.mydicapp.model.home.rxjava2.User;
-
-import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
-import io.reactivex.schedulers.Schedulers;
 
-/*
+/**
  * simple example by using filter operator to emit only even value
  * filter操作符需要传入一个条件函数，仅当发射的数据满足该条件时，订阅者才会收到数据。
  */

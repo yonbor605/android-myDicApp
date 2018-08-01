@@ -11,20 +11,10 @@ import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.app.AppConstant;
-import com.yonbor.mydicapp.cache.ModelCache;
-import com.yonbor.mydicapp.model.home.rxjava2.ApiUser;
-import com.yonbor.mydicapp.model.home.rxjava2.User;
-
-import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Using concat operator to combine Observable : concat maintain

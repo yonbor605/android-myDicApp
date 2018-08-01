@@ -20,7 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-/*
+/**
  * simple example using timer to do something after 2 second
  * Observable的静态方法，它会创建Observable，并在等待指定的时间之后发射唯一的事件。
  * 从运行结果可以发现即使我们没有发射任何数据，也会有一个默认值回调到onNext方法当中

@@ -11,23 +11,16 @@ import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.app.AppConstant;
-import com.yonbor.mydicapp.cache.ModelCache;
-import com.yonbor.mydicapp.model.home.rxjava2.ApiUser;
-import com.yonbor.mydicapp.model.home.rxjava2.User;
-
-import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 
-/* Using skip operator, it will not emit
+/**
+ * Using skip operator, it will not emit
  * the first 2 values.
  * skip(n)操作符，会跳过前n个结果。
  */

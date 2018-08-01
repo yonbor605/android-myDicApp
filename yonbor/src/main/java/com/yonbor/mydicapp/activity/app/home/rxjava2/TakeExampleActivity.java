@@ -11,7 +11,6 @@ import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.app.AppConstant;
-import com.yonbor.mydicapp.model.home.rxjava2.User;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -20,7 +19,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-/* Using take operator, it only emits
+/**
+ * Using take operator, it only emits
  * required number of values. here only 3 out of 5
  * take(n)操作，仅发射前n个数据。
  */
