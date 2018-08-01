@@ -119,6 +119,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startDistinctActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/distinctExample").navigation();
     }
 
     public void startLastOperatorActivity(View view) {
