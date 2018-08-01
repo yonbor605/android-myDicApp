@@ -53,7 +53,7 @@ public class ConcatExampleActivity extends BaseActivity {
     @Override
     public void findView() {
         findActionBar();
-        actionBar.setTitle("ConcatExample");
+        actionBar.setTitle("Concat");
         actionBar.setBackAction(new AppActionBar.Action() {
 
             @Override

@@ -49,7 +49,7 @@ public class BufferExampleActivity extends BaseActivity {
     @Override
     public void findView() {
         findActionBar();
-        actionBar.setTitle("BufferExample");
+        actionBar.setTitle("Buffer");
         actionBar.setBackAction(new AppActionBar.Action() {
 
             @Override

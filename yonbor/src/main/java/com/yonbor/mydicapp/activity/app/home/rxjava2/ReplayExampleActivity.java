@@ -52,7 +52,7 @@ public class ReplayExampleActivity extends BaseActivity {
     @Override
     public void findView() {
         findActionBar();
-        actionBar.setTitle("ReplayExample");
+        actionBar.setTitle("Replay");
         actionBar.setBackAction(new AppActionBar.Action() {
 
             @Override

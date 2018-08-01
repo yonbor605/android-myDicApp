@@ -111,6 +111,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startMergeActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/mergeExample").navigation();
     }
 
     public void startDeferActivity(View view) {

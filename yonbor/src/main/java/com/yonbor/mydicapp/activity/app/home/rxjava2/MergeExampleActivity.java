@@ -11,32 +11,22 @@ import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.app.AppConstant;
-import com.yonbor.mydicapp.cache.ModelCache;
-import com.yonbor.mydicapp.model.home.rxjava2.ApiUser;
-import com.yonbor.mydicapp.model.home.rxjava2.User;
 
-import java.util.List;
-
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
-/*
- * simple example using Flowable
+
+/**
+ * Using merge operator to combine Observable : merge does not maintain
+ * the order of Observable.
+ * It will emit all the 7 values may not be in order
+ * Ex - "A1", "B1", "A2", "A3", "A4", "B2", "B3" - may be anything
  */
-@Route(path = "/home/rxjava2/flowableExample")
-public class FlowableExampleActivity extends BaseActivity {
+@Route(path = "/home/rxjava2/mergeExample")
+public class MergeExampleActivity extends BaseActivity {
 
-    private static final String TAG = FlowableExampleActivity.class.getSimpleName();
+    private static final String TAG = MergeExampleActivity.class.getSimpleName();
     private Button btn;
     private TextView textView;
 
@@ -52,7 +42,7 @@ public class FlowableExampleActivity extends BaseActivity {
     @Override
     public void findView() {
         findActionBar();
-        actionBar.setTitle("Flowable");
+        actionBar.setTitle("Merge");
         actionBar.setBackAction(new AppActionBar.Action() {
 
             @Override
@@ -85,17 +75,20 @@ public class FlowableExampleActivity extends BaseActivity {
     }
 
     private void doSomeWork() {
-        Flowable<Integer> observable = Flowable.just(1, 2, 3, 4);
-        observable.reduce(50, new BiFunction<Integer, Integer, Integer>() {
-            @Override
-            public Integer apply(Integer integer, Integer integer2) throws Exception {
-                return integer + integer2;
-            }
-        }).subscribe(getObserver());
+
+        final String[] aStrings = {"A1", "A2", "A3", "A4"};
+        final String[] bStrings = {"B1", "B2", "B3"};
+
+        final Observable<String> aObservable = Observable.fromArray(aStrings);
+        final Observable<String> bObservable = Observable.fromArray(bStrings);
+
+        Observable.merge(aObservable, bObservable)
+                .subscribe(getObserver());
+
     }
 
-    private SingleObserver<Integer> getObserver() {
-        return new SingleObserver<Integer>() {
+    private Observer<String> getObserver() {
+        return new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
                 textView.append("---onSubscribe---" + d.isDisposed());
@@ -104,10 +97,10 @@ public class FlowableExampleActivity extends BaseActivity {
             }
 
             @Override
-            public void onSuccess(Integer integer) {
-                textView.append("---onSuccess---" + integer);
+            public void onNext(String s) {
+                textView.append("---onNext---" + s);
                 textView.append(AppConstant.LINE_SEPARATOR);
-                Log.d(TAG, "---onSuccess---" + integer);
+                Log.d(TAG, "---onNext---" + s);
             }
 
             @Override
@@ -115,6 +108,13 @@ public class FlowableExampleActivity extends BaseActivity {
                 textView.append("---onError---" + e.getMessage());
                 textView.append(AppConstant.LINE_SEPARATOR);
                 Log.d(TAG, "---onError---" + e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                textView.append("---onComplete---");
+                textView.append(AppConstant.LINE_SEPARATOR);
+                Log.d(TAG, "---onComplete---");
             }
         };
     }

@@ -50,7 +50,7 @@ public class ReduceExampleActivity extends BaseActivity {
     @Override
     public void findView() {
         findActionBar();
-        actionBar.setTitle("ReduceExample");
+        actionBar.setTitle("Reduce");
         actionBar.setBackAction(new AppActionBar.Action() {
 
             @Override
