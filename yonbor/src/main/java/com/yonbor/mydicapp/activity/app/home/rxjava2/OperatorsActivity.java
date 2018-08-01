@@ -103,6 +103,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startReplayActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/replayExample").navigation();
     }
 
     public void startConcatActivity(View view) {
