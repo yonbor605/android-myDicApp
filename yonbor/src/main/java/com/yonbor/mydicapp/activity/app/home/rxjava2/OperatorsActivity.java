@@ -99,6 +99,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startScanActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/scanExample").navigation();
     }
 
     public void startReplayActivity(View view) {
