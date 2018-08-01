@@ -91,6 +91,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startFilterActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/filterExample").navigation();
     }
 
     public void startSkipActivity(View view) {
