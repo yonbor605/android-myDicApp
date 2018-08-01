@@ -107,6 +107,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startConcatActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/concatExample").navigation();
     }
 
     public void startMergeActivity(View view) {
