@@ -123,6 +123,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startLastOperatorActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/lastOperatorExample").navigation();
     }
 
     public void startReplaySubjectActivity(View view) {
