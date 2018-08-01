@@ -95,6 +95,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startSkipActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/skipExample").navigation();
     }
 
     public void startScanActivity(View view) {
