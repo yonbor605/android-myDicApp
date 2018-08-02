@@ -163,6 +163,6 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startSwitchMapActivity(View view) {
-//        ARouter.getInstance().build("/home/rxjava2/switchMapExample").navigation();
+        ARouter.getInstance().build("/home/rxjava2/switchMapExample").navigation();
     }
 }
