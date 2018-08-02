@@ -139,7 +139,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startAsyncSubjectActivity(View view) {
-//        ARouter.getInstance().build("/home/rxjava2/asyncSubjectExample").navigation();
+        ARouter.getInstance().build("/home/rxjava2/asyncSubjectExample").navigation();
     }
 
     public void startThrottleFirstActivity(View view) {
