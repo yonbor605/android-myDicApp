@@ -143,7 +143,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startThrottleFirstActivity(View view) {
-//        ARouter.getInstance().build("/home/rxjava2/throttleFirstExample").navigation();
+        ARouter.getInstance().build("/home/rxjava2/throttleFirstExample").navigation();
     }
 
     public void startThrottleLastActivity(View view) {
