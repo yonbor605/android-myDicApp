@@ -131,7 +131,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startPublishSubjectActivity(View view) {
-//        ARouter.getInstance().build("/home/rxjava2/publishSubjectExample").navigation();
+        ARouter.getInstance().build("/home/rxjava2/publishSubjectExample").navigation();
     }
 
     public void startBehaviorSubjectActivity(View view) {
