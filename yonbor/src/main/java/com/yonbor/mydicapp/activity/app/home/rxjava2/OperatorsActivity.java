@@ -159,7 +159,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startDelayActivity(View view) {
-//        ARouter.getInstance().build("/home/rxjava2/delayExample").navigation();
+        ARouter.getInstance().build("/home/rxjava2/delayExample").navigation();
     }
 
     public void startSwitchMapActivity(View view) {
