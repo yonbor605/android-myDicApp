@@ -155,7 +155,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startWindowActivity(View view) {
-//        ARouter.getInstance().build("/home/rxjava2/windowExample").navigation();
+        ARouter.getInstance().build("/home/rxjava2/windowExample").navigation();
     }
 
     public void startDelayActivity(View view) {
