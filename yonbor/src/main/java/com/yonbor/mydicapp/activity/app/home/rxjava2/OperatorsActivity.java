@@ -151,7 +151,7 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startDebounceActivity(View view) {
-//        ARouter.getInstance().build("/home/rxjava2/debounceExample").navigation();
+        ARouter.getInstance().build("/home/rxjava2/debounceExample").navigation();
     }
 
     public void startWindowActivity(View view) {
