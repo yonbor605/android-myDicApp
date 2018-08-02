@@ -127,32 +127,42 @@ public class OperatorsActivity extends BaseActivity {
     }
 
     public void startReplaySubjectActivity(View view) {
+        ARouter.getInstance().build("/home/rxjava2/replaySubjectExample").navigation();
     }
 
     public void startPublishSubjectActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/publishSubjectExample").navigation();
     }
 
     public void startBehaviorSubjectActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/behaviorSubjectExample").navigation();
     }
 
     public void startAsyncSubjectActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/asyncSubjectExample").navigation();
     }
 
     public void startThrottleFirstActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/throttleFirstExample").navigation();
     }
 
     public void startThrottleLastActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/throttleLastExample").navigation();
     }
 
     public void startDebounceActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/debounceExample").navigation();
     }
 
     public void startWindowActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/windowExample").navigation();
     }
 
     public void startDelayActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/delayExample").navigation();
     }
 
     public void startSwitchMapActivity(View view) {
+//        ARouter.getInstance().build("/home/rxjava2/switchMapExample").navigation();
     }
 }
