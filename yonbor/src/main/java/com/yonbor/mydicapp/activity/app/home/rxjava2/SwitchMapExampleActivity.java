@@ -27,6 +27,8 @@ import io.reactivex.schedulers.Schedulers;
  * whenever a new item is emitted by the source Observable, it will unsubscribe to and stop
  * mirroring the Observable that was generated from the previously-emitted item,
  * and begin only mirroring the current one.
+ * 和flatMap很像，将Observable发射的数据变换为Observables集合，当原始Observable发射一个新的数据（Observable）时，
+ * 它将取消订阅前一个Observable，只监视当前这一个。
  *
  * Result: 5x
  */
