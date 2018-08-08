@@ -51,6 +51,7 @@ public class MainTabActivity extends BaseActivity {
     AppApplication application;
     LayoutInflater mInflater;
 
+
     /**
      * 入口
      *
@@ -283,7 +284,7 @@ public class MainTabActivity extends BaseActivity {
                                     intent.setData(uri);
                                     startActivity(intent);
                                 }
-                            },true);
+                            }, true);
                         }
                     }
                 });
