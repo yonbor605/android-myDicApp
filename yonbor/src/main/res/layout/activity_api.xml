@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yonbor.baselib.widget.AppActionBar
+        android:id="@+id/actionbar"
+        style="@style/AppActionBar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <cn.jzvd.JZVideoPlayerStandard
+                android:id="@+id/jz_video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="18dp" />
+
+
+            <Button
+                android:id="@+id/orientation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Orientation" />
+
+            <Button
+                android:id="@+id/extends_normal_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="Extends Normal Activity" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

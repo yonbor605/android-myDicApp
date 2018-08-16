@@ -174,5 +174,9 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.google.zxing:android-core:3.3.0'
+    // 饺子多媒体播放器
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.12'
+    // 视频边播放边缓存的代理策略
+    implementation 'com.danikula:videocache:2.7.0'
 
 }

@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yonbor.baselib.base.AppContext;
 import com.yonbor.baselib.rxtool.RxImageTool;
 import com.yonbor.baselib.rxtool.RxRecyclerViewDividerTool;
 import com.yonbor.baselib.widget.AppActionBar;
@@ -17,6 +16,7 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.app.home.code.CodeToolActivity;
 import com.yonbor.mydicapp.activity.app.home.code.CreateQRCodeActivity;
 import com.yonbor.mydicapp.activity.app.home.device.DeviceInfoActivity;
+import com.yonbor.mydicapp.activity.app.home.player.VideoPlayerActivity;
 import com.yonbor.mydicapp.activity.app.home.rxjava2.Rxjava2SampleActivity;
 import com.yonbor.mydicapp.activity.app.home.toast.RxToastActivity;
 import com.yonbor.mydicapp.beauty.adapter.HomeAdapter;
@@ -96,6 +96,7 @@ public class HomeFragment extends BaseFragment {
         mData.add(new HomeItemVo("设备信息", R.drawable.circle_device_info, DeviceInfoActivity.class, "/home/device/deviceInfo"));
         mData.add(new HomeItemVo("RxToast的使用", R.drawable.circle_toast, RxToastActivity.class, "/home/toast/rxToast"));
         mData.add(new HomeItemVo("Rxjava2在Android中的使用",R.drawable.circle_rxjava, Rxjava2SampleActivity.class,"/home/rxjava2/rxjava2Sample"));
+        mData.add(new HomeItemVo("多媒体播放器",R.drawable.circle_video_player, VideoPlayerActivity.class,"/home/player/videoPlayer"));
 
     }
 
