@@ -20,7 +20,7 @@ import cn.jzvd.JZVideoPlayerStandard;
 public class VideoPlayerActivity extends BaseActivity implements View.OnClickListener {
 
     private MyJZVideoPlayerStandard myJZVideoPlayerStandard;
-    private Button mApi, mRecyclerView, mTinyWindow, mDirectFullscreen, mWebView;
+    private Button mApi, mTinyWindow, mDirectFullscreen, mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,6 @@ public class VideoPlayerActivity extends BaseActivity implements View.OnClickLis
 
         myJZVideoPlayerStandard = findViewById(R.id.jz_video);
         mApi = findViewById(R.id.api);
-        mRecyclerView = findViewById(R.id.recyclerview);
         mTinyWindow = findViewById(R.id.tiny_window);
         mDirectFullscreen = findViewById(R.id.direct_play);
         mWebView = findViewById(R.id.webview);
@@ -62,7 +61,6 @@ public class VideoPlayerActivity extends BaseActivity implements View.OnClickLis
 
     private void setListener() {
         mApi.setOnClickListener(this);
-        mRecyclerView.setOnClickListener(this);
         mTinyWindow.setOnClickListener(this);
         mDirectFullscreen.setOnClickListener(this);
         mWebView.setOnClickListener(this);
@@ -92,11 +90,8 @@ public class VideoPlayerActivity extends BaseActivity implements View.OnClickLis
             case R.id.api:
                 startActivity(new Intent(VideoPlayerActivity.this, ApiActivity.class));
                 break;
-            case R.id.recyclerview:
-
-                break;
             case R.id.tiny_window:
-
+                startActivity(new Intent(VideoPlayerActivity.this, TinyWindowActivity.class));
                 break;
             case R.id.direct_play:
 
