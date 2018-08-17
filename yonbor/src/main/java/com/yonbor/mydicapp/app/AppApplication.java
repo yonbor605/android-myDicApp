@@ -1,10 +1,12 @@
 package com.yonbor.mydicapp.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.facebook.common.logging.FLog;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -175,4 +177,17 @@ public class AppApplication extends BaseApplication {
         Activity activity = mActivities.get(mActivities.size() - 1);
         return activity;
     }
+
+    /*饺子视频相关*/
+    private HttpProxyCacheServer proxy;
+
+    public static HttpProxyCacheServer getProxy(Context context) {
+        AppApplication app = (AppApplication) context.getApplicationContext();
+        return app.proxy == null ? (app.proxy = app.newProxy()) : app.proxy;
+    }
+
+    private HttpProxyCacheServer newProxy() {
+        return new HttpProxyCacheServer(this);
+    }
+    /*饺子视频相关*/
 }
