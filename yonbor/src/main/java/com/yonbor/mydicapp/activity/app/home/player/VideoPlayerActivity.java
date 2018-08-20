@@ -20,7 +20,7 @@ import cn.jzvd.JZVideoPlayerStandard;
 public class VideoPlayerActivity extends BaseActivity implements View.OnClickListener {
 
     private MyJZVideoPlayerStandard myJZVideoPlayerStandard;
-    private Button mApi, mTinyWindow, mDirectFullscreen, mWebView;
+    private Button mApi, mRecyclerView, mTinyWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +54,14 @@ public class VideoPlayerActivity extends BaseActivity implements View.OnClickLis
 
         myJZVideoPlayerStandard = findViewById(R.id.jz_video);
         mApi = findViewById(R.id.api);
+        mRecyclerView = findViewById(R.id.recyclerview);
         mTinyWindow = findViewById(R.id.tiny_window);
-        mDirectFullscreen = findViewById(R.id.direct_play);
-        mWebView = findViewById(R.id.webview);
     }
 
     private void setListener() {
         mApi.setOnClickListener(this);
+        mRecyclerView.setOnClickListener(this);
         mTinyWindow.setOnClickListener(this);
-        mDirectFullscreen.setOnClickListener(this);
-        mWebView.setOnClickListener(this);
 
         myJZVideoPlayerStandard.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4",
                 JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "饺子快长大");
@@ -90,14 +88,11 @@ public class VideoPlayerActivity extends BaseActivity implements View.OnClickLis
             case R.id.api:
                 startActivity(new Intent(VideoPlayerActivity.this, ApiActivity.class));
                 break;
+            case R.id.recyclerview:
+                startActivity(new Intent(VideoPlayerActivity.this, RecyclerViewActivity.class));
+                break;
             case R.id.tiny_window:
                 startActivity(new Intent(VideoPlayerActivity.this, TinyWindowActivity.class));
-                break;
-            case R.id.direct_play:
-
-                break;
-            case R.id.webview:
-
                 break;
         }
     }
