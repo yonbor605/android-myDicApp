@@ -32,7 +32,7 @@
                 android:text="Start Tiny Window" />
 
             <Button
-                android:id="@+id/auto_tiny_list_view_recycleview"
+                android:id="@+id/auto_tiny_recycleview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -40,7 +40,7 @@
                 android:text="RecycleView TinyWindow" />
 
             <Button
-                android:id="@+id/auto_tiny_list_view_recycleview_multiholder"
+                android:id="@+id/auto_tiny_recycleview_multiholder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

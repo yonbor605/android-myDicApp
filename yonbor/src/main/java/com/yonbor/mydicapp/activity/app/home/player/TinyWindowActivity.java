@@ -52,8 +52,8 @@ public class TinyWindowActivity extends BaseActivity implements View.OnClickList
 
         mJzVideoPlayerStandard = findViewById(R.id.jz_video);
         mBtnTinyWindow = findViewById(R.id.tiny_window);
-        mBtnTinyWindowRecycle = findViewById(R.id.auto_tiny_list_view_recycleview);
-        mBtnTinyWindowRecycleMultiHolder = findViewById(R.id.auto_tiny_list_view_recycleview_multiholder);
+        mBtnTinyWindowRecycle = findViewById(R.id.auto_tiny_recycleview);
+        mBtnTinyWindowRecycleMultiHolder = findViewById(R.id.auto_tiny_recycleview_multiholder);
 
     }
 
@@ -90,11 +90,11 @@ public class TinyWindowActivity extends BaseActivity implements View.OnClickList
             case R.id.tiny_window:
                 mJzVideoPlayerStandard.startWindowTiny();
                 break;
-            case R.id.auto_tiny_list_view_recycleview:
+            case R.id.auto_tiny_recycleview:
                 startActivity(new Intent(TinyWindowActivity.this, TinyWindowRecyclerViewActivity.class));
                 break;
-            case R.id.auto_tiny_list_view_recycleview_multiholder:
-
+            case R.id.auto_tiny_recycleview_multiholder:
+                startActivity(new Intent(TinyWindowActivity.this, TinyWindowRecyclerViewMultiHolderActivity.class));
                 break;
         }
     }
