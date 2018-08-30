@@ -23,6 +23,7 @@ import com.yonbor.mydicapp.app.AppConstant;
 import com.yonbor.mydicapp.app.ConstantsHttp;
 import com.yonbor.mydicapp.beauty.adapter.HealthNewsAdapter;
 import com.yonbor.mydicapp.model.service.HealthyNewsVo;
+import com.yonbor.mydicapp.net.http.HostType;
 import com.yonbor.mydicapp.net.http.NetClient;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -167,7 +168,7 @@ public class HealthyNewsFragment extends BaseFrameFragment {
         body.add(tagCode);
         body.add(pageNo);
         body.add(pageSize);
-        NetClient.post(baseActivity, ConstantsHttp.Json_Request, head, body, HealthyNewsVo.class,
+        NetClient.post(baseActivity, HostType.BASE_URL_FIRST, ConstantsHttp.Json_Request, head, body, HealthyNewsVo.class,
                 new NetClient.Listener<ArrayList<HealthyNewsVo>>() {
                     @Override
                     public void onPrepare() {

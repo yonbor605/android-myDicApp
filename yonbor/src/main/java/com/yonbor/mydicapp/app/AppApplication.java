@@ -60,7 +60,7 @@ public class AppApplication extends BaseApplication {
         ARouter.init(this); // As early as possible, it is recommended to initialize in the Application
 
         /**初始化base url*/
-        AppContext.initialize(getApplicationContext(), AppConstant.BASE_URL);
+        AppContext.initialize(getApplicationContext(), AppConstant.BASE_URL, AppConstant.BASE_URL2);
         /**注册ActivityListener*/
         registerActivityListener();
         /**crash异常捕获*/

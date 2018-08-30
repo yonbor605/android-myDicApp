@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.trello.rxlifecycle2.RxLifecycle;
 import com.trello.rxlifecycle2.android.ActivityEvent;
-import com.yonbor.baselib.http.RetrofitClient;
 import com.yonbor.baselib.model.http.ResultModel;
 import com.yonbor.baselib.ui.base.BaseActivity;
 import com.yonbor.baselib.utils.MD5;
@@ -42,15 +41,15 @@ public class NetClient {
 
     }
 
-    public static void post(final BaseActivity activity, String url,
+    public static void post(final BaseActivity activity, int hostType, String url,
                             ArrayMap<String, String> header, Object body,
                             final Class clazz,
                             final Listener listener) {
-        post(activity, url, header, body, clazz, Parser.DATA, true, listener);
+        post(activity, hostType, url, header, body, clazz, Parser.DATA, true, listener);
 
     }
 
-    public static void post(final BaseActivity activity, String url,
+    public static void post(final BaseActivity activity, int hostType, String url,
                             ArrayMap<String, String> header, Object body,
                             final Class clazz, final String dataId, boolean needCode,
                             final Listener listener) {
@@ -74,7 +73,7 @@ public class NetClient {
         header = addProductName(header);
 
         handelFlowable(activity, clazz, dataId, needCode, listener,
-                RetrofitClient.getInstance().post2(url, header, body));
+                RetrofitClient.getInstance(hostType).post2(url, header, body));
     }
 
     @android.support.annotation.NonNull
@@ -85,7 +84,7 @@ public class NetClient {
     }
 
 
-    public static void uploadHead(final BaseActivity activity, String url,
+    public static void uploadHead(final BaseActivity activity, int hostType, String url,
                                   String filePath, String serviceFileName,
                                   ArrayMap<String, String> header,
                                   final Class clazz, final String dataId,
@@ -98,11 +97,11 @@ public class NetClient {
         }
         header = addProductName(header);
         handelFlowable(activity, clazz, dataId, true, listener,
-                RetrofitClient.getInstance().postHeader2(url, filePath, serviceFileName, header));
+                RetrofitClient.getInstance(hostType).postHeader2(url, filePath, serviceFileName, header));
     }
 
 
-    public static void uploadFile(final BaseActivity activity, String url, ArrayMap<String, String> maps, List<String> filePaths,
+    public static void uploadFile(final BaseActivity activity, int hostType, String url, ArrayMap<String, String> maps, List<String> filePaths,
                                   ArrayMap<String, String> header,
                                   final Class clazz, final String dataId,
                                   final Listener listener) {
@@ -114,15 +113,15 @@ public class NetClient {
         }
         header = addProductName(header);
         handelFlowable(activity, clazz, dataId, true, listener,
-                RetrofitClient.getInstance().postFiles(url, maps, filePaths, header));
+                RetrofitClient.getInstance(hostType).postFiles(url, maps, filePaths, header));
     }
 
-    public static void uploadFile(final BaseActivity activity, String url, ArrayMap<String, String> maps, List<String> filePaths,
+    public static void uploadFile(final BaseActivity activity, int hostType, String url, ArrayMap<String, String> maps, List<String> filePaths,
                                   ArrayMap<String, String> header,
                                   final Class clazz,
                                   final Listener listener) {
 
-        uploadFile(activity, url, maps, filePaths, header, clazz, Parser.DATA, listener);
+        uploadFile(activity, hostType, url, maps, filePaths, header, clazz, Parser.DATA, listener);
     }
 
 
@@ -176,14 +175,14 @@ public class NetClient {
                 });
     }
 
-    public static void get(final BaseActivity activity, String url,
+    public static void get(final BaseActivity activity, int hostType, String url,
                            ArrayMap<String, String> header,
                            final Class clazz,
                            final Listener listener) {
-        get(activity, url, header, clazz, Parser.DATA, true, listener);
+        get(activity, hostType, url, header, clazz, Parser.DATA, true, listener);
     }
 
-    public static void get(final BaseActivity activity, String url,
+    public static void get(final BaseActivity activity, int hostType, String url,
                            ArrayMap<String, String> header,
                            final Class clazz, final String dataId, boolean needCode,
                            final Listener listener) {
@@ -195,7 +194,7 @@ public class NetClient {
         }
         header = addProductName(header);
         handelFlowable(activity, clazz, dataId, needCode, listener,
-                RetrofitClient.getInstance().get2(url, header));
+                RetrofitClient.getInstance(hostType).get2(url, header));
     }
 
     public interface Listener<T> {

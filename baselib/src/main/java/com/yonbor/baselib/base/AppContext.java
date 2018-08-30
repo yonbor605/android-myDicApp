@@ -9,7 +9,7 @@ import android.content.res.Resources;
 public class AppContext {
     private static Context sContext;
     private static Resources sResource;//直接获取Resources 放在application，可以减少调用getResources的次数
-    private static String baseUrl;
+    private static String baseUrl, baseUrl2;
     private static String httpHeaderAction;
 
     public static void initialize(Context context) {
@@ -17,15 +17,17 @@ public class AppContext {
         sResource = sContext.getResources();
     }
 
-    public static void initialize(Context context, String url) {
+    public static void initialize(Context context, String url, String url2) {
         initialize(context);
         baseUrl = url;
+        baseUrl2 = url2;
     }
 
-    public static void initialize(Context context, String url, String action) {
+    public static void initialize(Context context, String url, String action, String url2) {
         initialize(context);
         baseUrl = url;
         httpHeaderAction = action;
+        baseUrl2 = url2;
     }
 
 
@@ -35,6 +37,10 @@ public class AppContext {
 
     public static String getBaseUrl() {
         return baseUrl;
+    }
+
+    public static String getBaseUrl2() {
+        return baseUrl2;
     }
 
     public static String getHttpHeaderAction() {
@@ -51,6 +57,7 @@ public class AppContext {
         sContext = null;
         sResource = null;
         baseUrl = null;
+        baseUrl2 = null;
         httpHeaderAction = null;
     }
 }

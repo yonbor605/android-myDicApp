@@ -14,6 +14,8 @@ public class AppConstant {
     //图片地址
     public static String HTTP_IMG_URL = BuildConfig.HTTP_IMG_URL;
 
+    public static String BASE_URL2 = BuildConfig.BASE_URL2;
+
     public static final String Product_Name = "hcn.chaoyang.patient_android";//产品编码
 
     public static final String LINE_SEPARATOR = "\n";

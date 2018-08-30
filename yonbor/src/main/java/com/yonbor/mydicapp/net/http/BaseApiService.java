@@ -1,4 +1,4 @@
-package com.yonbor.baselib.http;
+package com.yonbor.mydicapp.net.http;
 
 import android.support.v4.util.ArrayMap;
 

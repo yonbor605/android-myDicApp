@@ -76,7 +76,7 @@ dependencies {
     api rootProject.ext.dependencies["recyclerview-swipe"]
     api 'com.yqritc:recyclerview-flexibledivider:1.4.0'
     api rootProject.ext.dependencies["fastjson"]
-//    api rootProject.ext.dependencies["convenientbanner"]
+    api rootProject.ext.dependencies["ConvenientBanner"]
 //    api 'info.hoang8f:android-segmented:1.0.6'
     api rootProject.ext.dependencies["fresco"]
 //    api rootProject.ext.dependencies["eventbus"]

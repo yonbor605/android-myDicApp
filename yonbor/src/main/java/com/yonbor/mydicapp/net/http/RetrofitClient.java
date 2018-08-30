@@ -1,9 +1,9 @@
-package com.yonbor.baselib.http;
+package com.yonbor.mydicapp.net.http;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
+import android.util.SparseArray;
 
 import com.yonbor.baselib.base.AppContext;
 
@@ -36,24 +36,30 @@ public class RetrofitClient {
     private static final int DEFAULT_TIMEOUT = 20;
     private BaseApiService apiService;
     private static OkHttpClient okHttpClient;
-    private static String baseUrl = AppContext.getBaseUrl();
-    private static Context mContext = AppContext.getContext();
-
+    private static RetrofitClient instance;
     private static Retrofit retrofit;
+    private static SparseArray<RetrofitClient> retrofitClientSparseArray = new SparseArray<>(HostType.TYPE_COUNT);
 
-    private static class SingletonHolder {
-        private static RetrofitClient INSTANCE = new RetrofitClient(
-                mContext, baseUrl);
-    }
 
-    public static RetrofitClient getInstance() {
-        return SingletonHolder.INSTANCE;
+
+    public static RetrofitClient getInstance(int hostType) {
+        instance = retrofitClientSparseArray.get(hostType);
+        if (instance == null) {
+            synchronized (RetrofitClient.class) {
+                if (instance == null) {
+                    instance = new RetrofitClient(hostType);
+                    retrofitClientSparseArray.put(hostType, instance);
+                }
+            }
+        }
+        return instance;
     }
 
     private RetrofitClient() {
+
     }
 
-    private RetrofitClient(Context context, String url) {
+    private RetrofitClient(int hostType) {
 
         okHttpClient = new OkHttpClient.Builder()
                 .addNetworkInterceptor(
@@ -85,25 +91,14 @@ public class RetrofitClient {
                 .addConverterFactory(FastJsonConverterFactory.create())
 //                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(url)
+                .baseUrl(ApiConstants.getHost(hostType))
                 .build();
 
         createBaseApi();
 
     }
 
-//   /**
-//     * ApiBaseUrl
-//     *
-//     * @param newApiBaseUrl
-//     */
-//    public static void changeApiBaseUrl(String newApiBaseUrl) {
-//        baseUrl = newApiBaseUrl;
-//        builder = new Retrofit.Builder()
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .baseUrl(baseUrl);
-//    }
-//
+
 //    /**
 //     *addcookieJar
 //     */
@@ -180,8 +175,6 @@ public class RetrofitClient {
                     bodyMap.put(serviceFileName + "\"; filename=\"" + file.getName() + "\"", photo);
                 }
             }
-
-
         }
         if (params != null) {
             return apiService.uploadFiles(url, bodyMap, headers, params);

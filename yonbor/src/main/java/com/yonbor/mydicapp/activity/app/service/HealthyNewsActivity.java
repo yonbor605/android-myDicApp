@@ -18,6 +18,8 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.app.ConstantsHttp;
 import com.yonbor.mydicapp.model.service.TagVo;
+import com.yonbor.mydicapp.net.http.ApiConstants;
+import com.yonbor.mydicapp.net.http.HostType;
 import com.yonbor.mydicapp.net.http.NetClient;
 
 import java.util.ArrayList;
@@ -86,7 +88,7 @@ public class HealthyNewsActivity extends BaseActivity {
         head.put(ConstantsHttp.Head_Token, "");
         ArrayList body = new ArrayList();
         body.add("healthNewsType");
-        NetClient.post(baseActivity, ConstantsHttp.Json_Request, head, body, TagVo.class,
+        NetClient.post(baseActivity, HostType.BASE_URL_FIRST, ConstantsHttp.Json_Request, head, body, TagVo.class,
                 new NetClient.Listener<ArrayList<TagVo>>() {
                     @Override
                     public void onPrepare() {
