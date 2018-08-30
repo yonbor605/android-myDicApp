@@ -332,28 +332,28 @@ public abstract class BaseActivity extends com.yonbor.baselib.ui.base.BaseActivi
      */
     private void doBeforeSetcontentView() {
         // 默认着色状态栏
-        SetStatusBarColor();
+        setStatusBarColor();
     }
 
 
     /**
      * 着色状态栏（4.4以上系统有效）
      */
-    protected void SetStatusBarColor() {
+    protected void setStatusBarColor() {
         StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.actionbar_bg1));
     }
 
     /**
      * 着色状态栏（4.4以上系统有效）
      */
-    protected void SetStatusBarColor(int color) {
+    protected void setStatusBarColor(int color) {
         StatusBarCompat.setStatusBarColor(this, color);
     }
 
     /**
      * 沉浸状态栏（4.4以上系统有效）
      */
-    protected void SetTranslanteBar() {
+    protected void setTranslanteBar() {
         StatusBarCompat.translucentStatusBar(this);
     }
 
