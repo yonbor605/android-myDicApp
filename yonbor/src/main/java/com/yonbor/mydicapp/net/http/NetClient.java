@@ -13,6 +13,7 @@ import com.yonbor.baselib.utils.MD5;
 import com.yonbor.baselib.utils.NetworkUtil;
 import com.yonbor.mydicapp.app.AppConstant;
 import com.yonbor.mydicapp.app.ConstantsHttp;
+import com.yonbor.mydicapp.model.WanAndroidVo;
 
 import org.reactivestreams.Subscription;
 
@@ -204,4 +205,90 @@ public class NetClient {
 
         void onFaile(Throwable t);
     }
+
+
+    //---------------------------WanAndroid开始-------------------------------------
+
+    private static void handelFlowable2(final BaseActivity activity, final Class clazz, final String dataId, final boolean needCode, final Listener2 listener, Flowable<String> stringFlowable) {
+        stringFlowable.map(new Function<String, WanAndroidVo>() {
+            @Override
+            public WanAndroidVo apply(@NonNull String s) throws Exception {
+                return Parser2.getInstance().parserSpData(s, clazz, dataId, needCode);
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(new Consumer<Subscription>() {//subscribe()调用后而且在事件发送前执行(默认情况下subcribe发生的线程决定，可以通过最近的跟在后面的subscribeOn指定)
+                    @Override
+                    public void accept(@NonNull Subscription subscription) throws Exception {
+                        if (listener != null)
+                            listener.onPrepare();
+                    }
+                })
+                .subscribeOn(AndroidSchedulers.mainThread())//指定doOnSubscribe的线程
+                .compose(RxLifecycle.bindUntilEvent(activity.lifecycle(), ActivityEvent.DESTROY))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new FlowableSubscriber<Object>() {
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        s.request(Long.MAX_VALUE);
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+                        WanAndroidVo result = (WanAndroidVo) o;
+                        if (listener != null)
+                            listener.onSuccess(result);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        t.printStackTrace();
+                        if (t instanceof SocketTimeoutException) {
+                            activity.showToast("请求超时");
+                        } else {
+                            activity.showToast("请求失败");
+                        }
+                        if (listener != null)
+                            listener.onFaile(t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
+
+    public interface Listener2<T> {
+        void onPrepare();
+
+        void onSuccess(WanAndroidVo<T> result);
+
+        void onFaile(Throwable t);
+    }
+
+
+    public static void get(final BaseActivity activity, int hostType, String url,
+                           ArrayMap<String, String> header,
+                           final Class clazz,
+                           final Listener2 listener) {
+        get(activity, hostType, url, header, clazz, Parser2.DATA, true, listener);
+    }
+
+    public static void get(final BaseActivity activity, int hostType, String url,
+                           ArrayMap<String, String> header,
+                           final Class clazz, final String dataId, boolean needCode,
+                           final Listener2 listener) {
+
+        if (!NetworkUtil.isNetworkAvailable()) {
+            activity.showToast("网络未打开");
+            if (listener != null) listener.onFaile(null);
+            return;
+        }
+
+        handelFlowable2(activity, clazz, dataId, needCode, listener,
+                RetrofitClient.getInstance(hostType).get2(url, header));
+    }
+
+    //---------------------------WanAndroid结束-------------------------------------
 }
