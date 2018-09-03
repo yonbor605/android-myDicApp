@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.orhanobut.logger.Logger;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 import com.yonbor.baselib.model.http.ResultModel;
@@ -29,10 +31,10 @@ import com.yonbor.mydicapp.model.home.banner.BannerVo;
 import com.yonbor.mydicapp.model.service.HealthyNewsVo;
 import com.yonbor.mydicapp.net.http.HostType;
 import com.yonbor.mydicapp.net.http.NetClient;
+import com.yonbor.mydicapp.view.NetworkImageHolderView;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -59,6 +61,7 @@ public class Service2Fragment extends BaseFragment {
 
     private HealthNewsAdapter adapter;
     ArrayList<BannerVo> bannerList = new ArrayList<>();
+    private ArrayList<String> networkImages = new ArrayList<>();
 
     @Override
     public void startHint() {
@@ -104,8 +107,14 @@ public class Service2Fragment extends BaseFragment {
 
             @Override
             public void onSuccess(WanAndroidVo<ArrayList<BannerVo>> result) {
-                bannerList.addAll(result.data);
+                if (result.isSuccess()) {
+                    if (!result.isEmpty()) {
+                        bannerList.clear();
+                        bannerList.addAll(result.data);
+                        initBanner();
+                    }
 
+                }
             }
 
             @Override
@@ -114,6 +123,28 @@ public class Service2Fragment extends BaseFragment {
             }
         });
 
+
+    }
+
+    private void initBanner() {
+
+        convenientBanner.setPages(new CBViewHolderCreator() {
+            @Override
+            public NetworkImageHolderView createHolder(View itemView) {
+                return new NetworkImageHolderView(itemView);
+            }
+
+            @Override
+            public int getLayoutId() {
+                return R.layout.item_banner;
+            }
+        }, bannerList)
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        showToast("点击了第" + position + "张图片");
+                    }
+                });
 
     }
 
@@ -231,6 +262,20 @@ public class Service2Fragment extends BaseFragment {
         }
     };
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 开始自动翻页
+        convenientBanner.startTurning();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // 停止翻页
+        convenientBanner.stopTurning();
+    }
 
     @Override
     public void onDestroyView() {
