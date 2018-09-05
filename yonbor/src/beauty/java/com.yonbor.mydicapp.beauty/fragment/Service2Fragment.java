@@ -2,33 +2,34 @@ package com.yonbor.mydicapp.beauty.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.util.ArrayMap;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
-import com.orhanobut.logger.Logger;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
-import com.yonbor.baselib.model.http.ResultModel;
 import com.yonbor.baselib.recyclerviewadapter.MultiItemTypeAdapter;
 import com.yonbor.baselib.recyclerviewadapter.base.ViewHolder;
+import com.yonbor.baselib.recyclerviewadapter.wrapper.HeaderAndFooterWrapper;
 import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
+import com.yonbor.mydicapp.activity.adapter.service.article.ArticlesAdapter;
 import com.yonbor.mydicapp.activity.common.WebActivity;
-import com.yonbor.mydicapp.app.AppConstant;
-import com.yonbor.mydicapp.app.ConstantsHttp;
-import com.yonbor.mydicapp.beauty.adapter.HealthNewsAdapter;
 import com.yonbor.mydicapp.model.WanAndroidVo;
 import com.yonbor.mydicapp.model.home.banner.BannerVo;
-import com.yonbor.mydicapp.model.service.HealthyNewsVo;
+import com.yonbor.mydicapp.model.service.ArticleListVo;
+import com.yonbor.mydicapp.model.service.ArticleVo;
 import com.yonbor.mydicapp.net.http.HostType;
 import com.yonbor.mydicapp.net.http.NetClient;
 import com.yonbor.mydicapp.view.NetworkImageHolderView;
@@ -50,18 +51,17 @@ public class Service2Fragment extends BaseFragment {
     AppActionBar actionbar;
     @BindView(R.id.recyclerview)
     SwipeMenuRecyclerView recyclerview;
-    @BindView(R.id.convenientBanner)
-    ConvenientBanner convenientBanner;
-    @BindView(R.id.appbar)
-    AppBarLayout appbar;
-    @BindView(R.id.scrollView)
-    NestedScrollView scrollView;
-    @BindView(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
 
-    private HealthNewsAdapter adapter;
+    private ArticlesAdapter adapter;
     ArrayList<BannerVo> bannerList = new ArrayList<>();
     private ArrayList<String> networkImages = new ArrayList<>();
+    private int pageNum = 0;
+    private ArrayList<ArticleVo> articleList = new ArrayList<>();
+    HeaderAndFooterWrapper headerAndFooterWrapper;
+    View headerView;
+    private ConvenientBanner convenientBanner;
 
     @Override
     public void startHint() {
@@ -91,12 +91,76 @@ public class Service2Fragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         findView();
-//        setData();
-//        getNewsData();
+        setData();
         getBannerData();
+        getArticleData(pageNum);
 
 
     }
+
+    private void findView() {
+        actionbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.actionbar_bg));
+        actionbar.setTitle("玩Android");
+        actionbar.addAction(new AppActionBar.Action() {
+            @Override
+            public int getDrawable() {
+                return 0;
+            }
+
+            @Override
+            public String getText() {
+                return "查看全部";
+            }
+
+            @Override
+            public void performAction(View view) {
+//                Intent intent = new Intent(baseActivity, HealthyNewsActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+        headerView = LayoutInflater.from(getActivity()).inflate(R.layout.rv_header_banner, null, false);
+        convenientBanner = headerView.findViewById(R.id.convenientBanner);
+        //设置高度是屏幕1/3
+        convenientBanner.setLayoutParams(new RecyclerView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, getActivity().getWindowManager().getDefaultDisplay().getHeight() / 3));
+    }
+
+    private void setData() {
+        adapter = new ArticlesAdapter();
+        adapter.setOnItemClickListener(adapterListener);
+        headerAndFooterWrapper = new HeaderAndFooterWrapper(adapter);
+        headerAndFooterWrapper.addHeaderView(headerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseContext);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerview.setLayoutManager(linearLayoutManager);
+        recyclerview.addItemDecoration(
+                new HorizontalDividerItemDecoration.Builder(getActivity())
+                        .color(ContextCompat.getColor(baseContext, R.color.transparent))
+                        .sizeResId(R.dimen.dp0_6)
+                        .marginResId(R.dimen.dp0, R.dimen.dp0)
+                        .build());
+        recyclerview.setAdapter(headerAndFooterWrapper);
+
+
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                pageNum = 0;
+                getArticleData(pageNum);
+                refreshLayout.finishRefresh(2000);
+            }
+        });
+
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                getArticleData(pageNum);
+                refreshLayout.finishLoadMore(2000);
+            }
+        });
+    }
+
 
     private void getBannerData() {
         NetClient.get(baseActivity, HostType.BASE_URL_SECOND, "banner/json", null, BannerVo.class, new NetClient.Listener2<ArrayList<BannerVo>>() {
@@ -113,7 +177,9 @@ public class Service2Fragment extends BaseFragment {
                         bannerList.addAll(result.data);
                         initBanner();
                     }
-
+                } else {
+                    onFaile(null);
+                    showToast(result.getToast());
                 }
             }
 
@@ -122,8 +188,6 @@ public class Service2Fragment extends BaseFragment {
 
             }
         });
-
-
     }
 
     private void initBanner() {
@@ -148,121 +212,6 @@ public class Service2Fragment extends BaseFragment {
 
     }
 
-    private void getNewsData() {
-
-        ArrayMap<String, String> head = new ArrayMap<>();
-        head.put(ConstantsHttp.Head_Id, ConstantsHttp.Health_News_Service);
-        head.put(ConstantsHttp.Head_Method, "listNews");
-        head.put(ConstantsHttp.Head_Token, "");
-        ArrayList body = new ArrayList();
-        body.add(0);
-        body.add(0);
-        body.add(5);
-        NetClient.post(baseActivity, HostType.BASE_URL_FIRST, ConstantsHttp.Json_Request, head, body, HealthyNewsVo.class,
-                new NetClient.Listener<ArrayList<HealthyNewsVo>>() {
-                    @Override
-                    public void onPrepare() {
-                        actionbar.startTitleRefresh();
-                        showLoadingView();
-                    }
-
-                    @Override
-                    public void onSuccess(ResultModel<ArrayList<HealthyNewsVo>> result) {
-                        actionbar.endTitleRefresh();
-                        refreshComplete();
-                        if (result.isSuccess()) {
-                            if (!result.isEmpty()) {
-                                restoreView();
-                                adapter.setDatas(result.data);
-                                Logger.e("result", result.data);
-                            } else {
-                                showEmptyView();
-                            }
-                        } else {
-                            onFaile(null);
-                            showToast(result.getToast());
-                        }
-                    }
-
-                    @Override
-                    public void onFaile(Throwable t) {
-                        actionbar.endTitleRefresh();
-                        refreshComplete();
-                        showErrorView();
-                    }
-                });
-    }
-
-    private void setData() {
-        adapter = new HealthNewsAdapter();
-        adapter.setOnItemClickListener(adapterListener);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseContext);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerview.setLayoutManager(linearLayoutManager);
-        recyclerview.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(ContextCompat.getColor(baseContext, R.color.transparent))
-                        .sizeResId(R.dimen.dp0_6)
-                        .marginResId(R.dimen.dp0, R.dimen.dp0)
-                        .build());
-        recyclerview.setAdapter(adapter);
-    }
-
-    private void findView() {
-        actionbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.actionbar_bg));
-        actionbar.setTitle("玩Android");
-        actionbar.addAction(new AppActionBar.Action() {
-            @Override
-            public int getDrawable() {
-                return 0;
-            }
-
-            @Override
-            public String getText() {
-                return "查看全部";
-            }
-
-            @Override
-            public void performAction(View view) {
-//                Intent intent = new Intent(baseActivity, HealthyNewsActivity.class);
-//                startActivity(intent);
-            }
-        });
-    }
-
-
-    @Override
-    public void onRefresh() {
-
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-
-    MultiItemTypeAdapter.OnItemClickListener adapterListener = new MultiItemTypeAdapter.OnItemClickListener<HealthyNewsVo>() {
-        @Override
-        public void onItemClick(ViewGroup parent, View view, ViewHolder holder, List<HealthyNewsVo> datas, int position) {
-            datas.get(position).readCount += 1;
-            Intent web = new Intent(baseContext, WebActivity.class);
-            web.putExtra("title", "资讯详情");
-            web.putExtra("url", AppConstant.BASE_URL + "h5/healthnews.html?id=" + datas.get(position).id + "&token=1");
-            startActivity(web);
-        }
-
-        @Override
-        public void onItemViewClick(View view, ViewHolder holder, HealthyNewsVo item, int position, int tPos) {
-        }
-
-        @Override
-        public boolean onItemLongClick(ViewGroup parent, View view, ViewHolder holder, List<HealthyNewsVo> datas, int position) {
-            return false;
-        }
-    };
-
-
     @Override
     public void onResume() {
         super.onResume();
@@ -276,6 +225,69 @@ public class Service2Fragment extends BaseFragment {
         // 停止翻页
         convenientBanner.stopTurning();
     }
+
+
+    private void getArticleData(int curPage) {
+        NetClient.get(baseActivity, HostType.BASE_URL_SECOND, "article/list/" + curPage + "/json", null, ArticleListVo.class, new NetClient.Listener2<ArticleListVo>() {
+            @Override
+            public void onPrepare() {
+                showLoadingView();
+            }
+
+            @Override
+            public void onSuccess(WanAndroidVo<ArticleListVo> result) {
+                if (result.isSuccess()) {
+                    if (!result.isEmpty()) {
+                        restoreView();
+                        articleList = result.data.getDatas();
+                        pageNum = result.data.getCurPage();
+                        adapter.setDatas(articleList);
+                        headerAndFooterWrapper.notifyDataSetChanged();
+                    } else {
+                        showEmptyView();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFaile(Throwable t) {
+                showErrorView();
+            }
+        });
+    }
+
+
+    MultiItemTypeAdapter.OnItemClickListener adapterListener = new MultiItemTypeAdapter.OnItemClickListener<ArticleVo>() {
+        @Override
+        public void onItemClick(ViewGroup parent, View view, ViewHolder holder, List<ArticleVo> datas, int position) {
+            Intent web = new Intent(baseContext, WebActivity.class);
+            web.putExtra("title", datas.get(position - 1).getTitle());
+            web.putExtra("url", datas.get(position - 1).getLink());
+            startActivity(web);
+        }
+
+        @Override
+        public void onItemViewClick(View view, ViewHolder holder, ArticleVo item, int position, int tPos) {
+        }
+
+        @Override
+        public boolean onItemLongClick(ViewGroup parent, View view, ViewHolder holder, List<ArticleVo> datas, int position) {
+            return false;
+        }
+    };
+
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
 
     @Override
     public void onDestroyView() {

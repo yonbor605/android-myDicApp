@@ -23,6 +23,7 @@ android {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         multiDexEnabled = true //方法数超过64k
+        vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -180,5 +181,8 @@ dependencies {
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.12'
     // 视频边播放边缓存的代理策略
     implementation 'com.danikula:videocache:2.7.0'
+    // Android智能下拉刷新框架-SmartRefreshLayout
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["SmartRefreshHeader"] // 没有使用特殊Header，可以不加这行
 
 }
