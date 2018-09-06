@@ -147,6 +147,7 @@ public class Service2Fragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                getBannerData();
                 pageNum = 0;
                 getArticleData(pageNum);
                 refreshLayout.finishRefresh(1000);
@@ -211,7 +212,10 @@ public class Service2Fragment extends BaseFragment {
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        showToast("点击了第" + position + "张图片");
+                        Intent web = new Intent(baseContext, WebActivity.class);
+                        web.putExtra("title", bannerList.get(position).getTitle());
+                        web.putExtra("url", bannerList.get(position).getUrl());
+                        startActivity(web);
                     }
                 });
 
