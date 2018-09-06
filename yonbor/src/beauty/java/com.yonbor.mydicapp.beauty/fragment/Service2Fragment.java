@@ -119,7 +119,7 @@ public class Service2Fragment extends BaseFragment {
             }
         });
 
-        headerView = LayoutInflater.from(getActivity()).inflate(R.layout.rv_header_banner, null, false);
+        headerView = LayoutInflater.from(getActivity()).inflate(R.layout.rv_header_banner, null);
         convenientBanner = headerView.findViewById(R.id.convenientBanner);
         //设置高度是屏幕1/3
         convenientBanner.setLayoutParams(new RecyclerView.LayoutParams(
