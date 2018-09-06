@@ -58,6 +58,7 @@ public class Service2Fragment extends BaseFragment {
     ArrayList<BannerVo> bannerList = new ArrayList<>();
     private ArrayList<String> networkImages = new ArrayList<>();
     private int pageNum = 0;
+    private int pageCount;
     private ArrayList<ArticleVo> articleList = new ArrayList<>();
     HeaderAndFooterWrapper headerAndFooterWrapper;
     View headerView;
@@ -142,13 +143,13 @@ public class Service2Fragment extends BaseFragment {
                         .build());
         recyclerview.setAdapter(headerAndFooterWrapper);
 
-
+        refreshLayout.setPrimaryColorsId(R.color.actionbar_bg, android.R.color.white);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 pageNum = 0;
                 getArticleData(pageNum);
-                refreshLayout.finishRefresh(2000);
+                refreshLayout.finishRefresh(1000);
             }
         });
 
@@ -156,7 +157,11 @@ public class Service2Fragment extends BaseFragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 getArticleData(pageNum);
-                refreshLayout.finishLoadMore(2000);
+                if (pageNum == (pageCount - 1)) {
+                    refreshLayout.finishLoadMoreWithNoMoreData();
+                } else {
+                    refreshLayout.finishLoadMore(1000);
+                }
             }
         });
     }
@@ -239,9 +244,14 @@ public class Service2Fragment extends BaseFragment {
                 if (result.isSuccess()) {
                     if (!result.isEmpty()) {
                         restoreView();
-                        articleList = result.data.getDatas();
                         pageNum = result.data.getCurPage();
-                        adapter.setDatas(articleList);
+                        pageCount = result.data.getPageCount();
+                        articleList = result.data.getDatas();
+                        if (pageNum == 1) { // 第一页
+                            adapter.setDatas(articleList);
+                        } else {
+                            adapter.addDatas(articleList);
+                        }
                         headerAndFooterWrapper.notifyDataSetChanged();
                     } else {
                         showEmptyView();
