@@ -17,7 +17,7 @@
         android:padding="@dimen/dp_10">
 
         <ImageView
-            android:id="@+id/item_project_list_iv"
+            android:id="@+id/iv_project_pic"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -32,7 +32,7 @@
             android:layout_weight="5">
 
             <TextView
-                android:id="@+id/item_project_list_title_tv"
+                android:id="@+id/tv_project_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -42,10 +42,10 @@
                 android:textSize="@dimen/item_tv_title" />
 
             <TextView
-                android:id="@+id/item_project_list_content_tv"
+                android:id="@+id/tv_project_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/item_project_list_title_tv"
+                android:layout_below="@id/tv_project_title"
                 android:layout_marginTop="@dimen/dp_10"
                 android:ellipsize="end"
                 android:maxLines="3"
@@ -56,22 +56,22 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_below="@id/item_project_list_content_tv">
+                android:layout_below="@id/tv_project_desc">
 
                 <TextView
-                    android:id="@+id/item_project_list_author_tv"
+                    android:id="@+id/tv_project_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/item_project_list_time_tv"
+                    android:layout_alignBaseline="@+id/tv_project_time"
                     android:text="@string/app_name"
                     android:textColor="@color/item_author"
                     android:textSize="@dimen/item_tv_author" />
 
                 <TextView
-                    android:id="@+id/item_project_list_time_tv"
+                    android:id="@+id/tv_project_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/item_project_list_like_iv"
+                    android:layout_above="@+id/iv_project_like"
                     android:layout_alignParentRight="true"
                     android:layout_marginBottom="@dimen/dp_8"
                     android:text="@string/app_name"
@@ -79,7 +79,7 @@
                     android:textSize="@dimen/item_tv_date" />
 
                 <ImageView
-                    android:id="@+id/item_project_list_like_iv"
+                    android:id="@+id/iv_project_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

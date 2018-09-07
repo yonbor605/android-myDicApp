@@ -115,7 +115,7 @@ public class ProjectsActivity extends BaseActivity {
             fragments.add(oneFragment);
         }
         adapter = new TabAdapter(getSupportFragmentManager(), fragments);
-        viewpager.setOffscreenPageLimit(fragments.size());
+        viewpager.setOffscreenPageLimit(3);
         viewpager.setAdapter(adapter);
     }
 
