@@ -93,7 +93,7 @@ public class ProjectsFragment extends BaseFragment {
                         .build());
         recyclerview.setAdapter(adapter);
 
-        refreshLayout.setPrimaryColorsId(R.color.white, android.R.color.white);
+        refreshLayout.setPrimaryColorsId(R.color.lightgray, android.R.color.white);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
