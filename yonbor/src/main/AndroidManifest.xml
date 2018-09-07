@@ -248,6 +248,10 @@
             android:name=".activity.app.home.player.TinyWindowRecyclerViewMultiHolderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.app.service.ProjectsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
 
     </application>
 

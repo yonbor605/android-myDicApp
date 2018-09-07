@@ -15,6 +15,7 @@
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_marginTop">6dp</item>
     </style>
+
     <style name="AppBottomMenuTextN">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -23,6 +24,7 @@
         <item name="android:textColor">#999999</item>
         <item name="android:textSize">12sp</item>
     </style>
+
     <style name="AppBottomMenuTextP">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -45,6 +47,15 @@
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabPaddingStart">0dp</item>
         <item name="tabPaddingEnd">0dp</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="tabTextAppearance">@style/CustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/actionbar_bg</item>
+    </style>
+
+    <!--WanAndroid-项目的tabLayout-->
+    <style name="WanAndroidTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/actionbar_bg</item>
+        <item name="tabIndicatorHeight">2dp</item>
         <item name="tabBackground">@color/white</item>
         <item name="tabTextAppearance">@style/CustomTabTextAppearance</item>
         <item name="tabSelectedTextColor">@color/actionbar_bg</item>

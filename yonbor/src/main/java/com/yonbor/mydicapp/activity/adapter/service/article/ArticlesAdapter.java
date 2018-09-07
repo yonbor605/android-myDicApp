@@ -11,7 +11,7 @@ import com.yonbor.baselib.recyclerviewadapter.base.ViewHolder;
 import com.yonbor.baselib.utils.EffectUtil;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.app.GlideApp;
-import com.yonbor.mydicapp.model.service.ArticleVo;
+import com.yonbor.mydicapp.model.service.article.ArticleVo;
 
 /**
  * 文章列表

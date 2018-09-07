@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -25,11 +24,13 @@ import com.yonbor.baselib.recyclerviewadapter.wrapper.HeaderAndFooterWrapper;
 import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.adapter.service.article.ArticlesAdapter;
+import com.yonbor.mydicapp.activity.app.service.ProjectsActivity;
+import com.yonbor.mydicapp.activity.base.BaseFragment;
 import com.yonbor.mydicapp.activity.common.WebActivity;
 import com.yonbor.mydicapp.model.WanAndroidVo;
 import com.yonbor.mydicapp.model.home.banner.BannerVo;
-import com.yonbor.mydicapp.model.service.ArticleListVo;
-import com.yonbor.mydicapp.model.service.ArticleVo;
+import com.yonbor.mydicapp.model.service.article.ArticleListVo;
+import com.yonbor.mydicapp.model.service.article.ArticleVo;
 import com.yonbor.mydicapp.net.http.HostType;
 import com.yonbor.mydicapp.net.http.NetClient;
 import com.yonbor.mydicapp.view.NetworkImageHolderView;
@@ -42,7 +43,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-
+/**
+ * WanAndroid
+ */
 public class Service2Fragment extends BaseFragment {
 
 
@@ -110,13 +113,13 @@ public class Service2Fragment extends BaseFragment {
 
             @Override
             public String getText() {
-                return "查看全部";
+                return "项目";
             }
 
             @Override
             public void performAction(View view) {
-//                Intent intent = new Intent(baseActivity, HealthyNewsActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(baseActivity, ProjectsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -290,17 +293,6 @@ public class Service2Fragment extends BaseFragment {
             return false;
         }
     };
-
-
-    @Override
-    public void onRefresh() {
-
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
 
 
     @Override

@@ -11,7 +11,7 @@ import com.yonbor.baselib.utils.ImageUtil;
 import com.yonbor.baselib.utils.StringUtil;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.app.AppConstant;
-import com.yonbor.mydicapp.model.service.HealthyNewsVo;
+import com.yonbor.mydicapp.model.service.healthNews.HealthyNewsVo;
 import com.yonbor.mydicapp.utils.DateUtil;
 import com.yonbor.mydicapp.utils.ImageSizeUtil;
 import com.yonbor.mydicapp.utils.ImageUrlUtil;

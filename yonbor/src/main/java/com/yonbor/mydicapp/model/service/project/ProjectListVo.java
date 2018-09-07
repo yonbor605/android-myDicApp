@@ -1,23 +1,23 @@
-package com.yonbor.mydicapp.model.service;
+package com.yonbor.mydicapp.model.service.project;
 
 import com.yonbor.mydicapp.model.BaseVo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Description:
  * @Author: YinYongbo
- * @Time: 2018/9/4 16:55
+ * @Time: 2018/9/7 14:42
  */
-public class ArticleListVo extends BaseVo {
+public class ProjectListVo extends BaseVo {
+
 
     private int curPage;
     private int offset;
     private int pageCount;
     private int size;
     private int total;
-    private ArrayList<ArticleVo> datas;
+    private ArrayList<ProjectVo> datas;
 
 
     public int getCurPage() {
@@ -60,11 +60,11 @@ public class ArticleListVo extends BaseVo {
         this.total = total;
     }
 
-    public ArrayList<ArticleVo> getDatas() {
+    public ArrayList<ProjectVo> getDatas() {
         return datas;
     }
 
-    public void setDatas(ArrayList<ArticleVo> datas) {
+    public void setDatas(ArrayList<ProjectVo> datas) {
         this.datas = datas;
     }
 }

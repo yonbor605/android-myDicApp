@@ -1,4 +1,4 @@
-package com.yonbor.mydicapp.model.service;
+package com.yonbor.mydicapp.model.service.healthNews;
 
 import android.support.annotation.NonNull;
 

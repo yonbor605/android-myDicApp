@@ -22,7 +22,7 @@ import com.yonbor.mydicapp.activity.common.WebActivity;
 import com.yonbor.mydicapp.app.AppConstant;
 import com.yonbor.mydicapp.app.ConstantsHttp;
 import com.yonbor.mydicapp.beauty.adapter.HealthNewsAdapter;
-import com.yonbor.mydicapp.model.service.HealthyNewsVo;
+import com.yonbor.mydicapp.model.service.healthNews.HealthyNewsVo;
 import com.yonbor.mydicapp.net.http.HostType;
 import com.yonbor.mydicapp.net.http.NetClient;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;

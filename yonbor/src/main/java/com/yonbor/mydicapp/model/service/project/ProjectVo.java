@@ -1,4 +1,4 @@
-package com.yonbor.mydicapp.model.service;
+package com.yonbor.mydicapp.model.service.project;
 
 import com.yonbor.mydicapp.model.BaseVo;
 
@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * @Description:
  * @Author: YinYongbo
- * @Time: 2018/9/4 16:58
+ * @Time: 2018/9/7 14:42
  */
-public class ArticleVo extends BaseVo {
+public class ProjectVo extends BaseVo {
 
     private String apkLink;
     private String author;
