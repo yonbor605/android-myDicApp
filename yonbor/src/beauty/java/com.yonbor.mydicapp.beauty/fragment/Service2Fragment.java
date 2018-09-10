@@ -28,6 +28,7 @@ import com.yonbor.mydicapp.activity.adapter.service.article.ArticlesAdapter;
 import com.yonbor.mydicapp.activity.app.service.ProjectsActivity;
 import com.yonbor.mydicapp.activity.base.BaseFragment;
 import com.yonbor.mydicapp.activity.common.WebActivity;
+import com.yonbor.mydicapp.model.NullModel;
 import com.yonbor.mydicapp.model.WanAndroidVo;
 import com.yonbor.mydicapp.model.home.banner.BannerVo;
 import com.yonbor.mydicapp.model.service.article.ArticleListVo;
@@ -311,6 +312,12 @@ public class Service2Fragment extends BaseFragment {
 
         @Override
         public void onItemViewClick(View view, ViewHolder holder, ArticleVo item, int position, int tPos) {
+            switch (view.getId()) {
+                case R.id.iv_like:
+//                    taskCollect(item.getId());
+                    break;
+            }
+
         }
 
         @Override
@@ -318,6 +325,31 @@ public class Service2Fragment extends BaseFragment {
             return false;
         }
     };
+
+    /**
+     * 注意所有收藏相关都需要登录操作，建议登录将返回的cookie（其中包含账号、密码）持久化到本地即可。
+     * @param id
+     */
+    private void taskCollect(int id) {
+        NetClient.post(baseActivity, HostType.BASE_URL_SECOND, "lg/collect/" + id + "/json", null, null, NullModel.class, new NetClient.Listener2<NullModel>() {
+
+            @Override
+            public void onPrepare() {
+
+            }
+
+            @Override
+            public void onSuccess(WanAndroidVo<NullModel> result) {
+
+            }
+
+            @Override
+            public void onFaile(Throwable t) {
+
+            }
+        });
+
+    }
 
 
     @Override

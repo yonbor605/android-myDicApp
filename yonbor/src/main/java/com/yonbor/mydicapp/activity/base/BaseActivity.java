@@ -22,6 +22,8 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.app.AppApplication;
 import com.yonbor.mydicapp.app.AppConstant;
 
+import org.greenrobot.eventbus.EventBus;
+
 
 /**
  * Activity 基类
@@ -39,8 +41,8 @@ public abstract class BaseActivity extends com.yonbor.baselib.ui.base.BaseActivi
         doBeforeSetcontentView();
         this.baseActivity = this;
         this.application = (AppApplication) getApplication();
+        EventBus.getDefault().register(this);
         rxPermissions.setLogging(true);
-
     }
 
     public String getSSOLoginAction() {
@@ -234,6 +236,7 @@ public abstract class BaseActivity extends com.yonbor.baselib.ui.base.BaseActivi
 
     @Override
     protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
         dismissAlertDialog();
         ExitUtil.clear();
         super.onDestroy();

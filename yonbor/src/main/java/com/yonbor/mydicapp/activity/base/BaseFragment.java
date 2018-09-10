@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.yonbor.baselib.widget.loading.LoadViewHelper;
 import com.yonbor.mydicapp.app.AppApplication;
 
+import org.greenrobot.eventbus.EventBus;
+
 
 public abstract class BaseFragment extends com.yonbor.baselib.ui.base.BaseFragment {
     public View mainView;
@@ -59,10 +61,12 @@ public abstract class BaseFragment extends com.yonbor.baselib.ui.base.BaseFragme
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         isCreated = true;
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onDestroyView() {
+        EventBus.getDefault().unregister(this);
         super.onDestroyView();
     }
 

@@ -70,6 +70,16 @@ public class ArticlesAdapter extends CommonAdapter<ArticleVo> {
         }
 
 
+        EffectUtil.addClickEffect(iv_like);
+        iv_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null)
+                    mOnItemClickListener.onItemViewClick(v, holder, item, position, -1);
+            }
+        });
+
+
         EffectUtil.addClickEffect(holder.getConvertView());
     }
 

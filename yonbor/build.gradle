@@ -184,5 +184,6 @@ dependencies {
     // Android智能下拉刷新框架-SmartRefreshLayout
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"] // 没有使用特殊Header，可以不加这行
+    implementation rootProject.ext.dependencies["eventbus"]
 
 }

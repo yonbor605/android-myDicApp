@@ -290,5 +290,31 @@ public class NetClient {
                 RetrofitClient.getInstance(hostType).get2(url, header));
     }
 
+
+    public static void post(final BaseActivity activity, int hostType, String url,
+                            ArrayMap<String, String> header, Object body,
+                            final Class clazz,
+                            final Listener2 listener) {
+        post(activity, hostType, url, header, body, clazz, Parser2.DATA, true, listener);
+
+    }
+
+    public static void post(final BaseActivity activity, int hostType, String url,
+                            ArrayMap<String, String> header, Object body,
+                            final Class clazz, final String dataId, boolean needCode,
+                            final Listener2 listener) {
+
+        if (!NetworkUtil.isNetworkAvailable()) {
+            activity.showToast("网络未打开");
+            if (listener != null) listener.onFaile(null);
+            return;
+        }
+
+        handelFlowable2(activity, clazz, dataId, needCode, listener,
+                RetrofitClient.getInstance(hostType).post2(url, header, body));
+    }
+
+
+
     //---------------------------WanAndroid结束-------------------------------------
 }
