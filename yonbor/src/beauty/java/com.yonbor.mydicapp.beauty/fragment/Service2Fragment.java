@@ -22,6 +22,7 @@ import com.yonbor.baselib.recyclerviewadapter.MultiItemTypeAdapter;
 import com.yonbor.baselib.recyclerviewadapter.base.ViewHolder;
 import com.yonbor.baselib.recyclerviewadapter.wrapper.HeaderAndFooterWrapper;
 import com.yonbor.baselib.widget.AppActionBar;
+import com.yonbor.baselib.widget.loading.LoadViewHelper;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.adapter.service.article.ArticlesAdapter;
 import com.yonbor.mydicapp.activity.app.service.ProjectsActivity;
@@ -66,6 +67,7 @@ public class Service2Fragment extends BaseFragment {
     HeaderAndFooterWrapper headerAndFooterWrapper;
     View headerView;
     private ConvenientBanner convenientBanner;
+    private static boolean isRefreshOrLoadMore = false; // 解决viewHelper的状态动画与SmartRefreshLayout的刷新、加载动画的冲突
 
     @Override
     public void startHint() {
@@ -123,6 +125,17 @@ public class Service2Fragment extends BaseFragment {
             }
         });
 
+        View base = mainView.findViewById(R.id.loadLay);
+        if (base != null) {
+            viewHelper = new LoadViewHelper(base);
+            viewHelper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onRefresh();
+                }
+            });
+        }
+
         headerView = LayoutInflater.from(getActivity()).inflate(R.layout.rv_header_banner, null);
         convenientBanner = headerView.findViewById(R.id.convenientBanner);
         //设置高度是屏幕1/3
@@ -147,25 +160,34 @@ public class Service2Fragment extends BaseFragment {
         recyclerview.setAdapter(headerAndFooterWrapper);
 
         refreshLayout.setPrimaryColorsId(R.color.actionbar_bg, android.R.color.white);
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                getBannerData();
-                pageNum = 0;
-                getArticleData(pageNum);
-                refreshLayout.finishRefresh(1000);
-            }
-        });
+        onRefresh();
+        onLoadMore();
+    }
 
+    private void onLoadMore() {
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                isRefreshOrLoadMore = true;
                 getArticleData(pageNum);
                 if (pageNum == (pageCount - 1)) {
                     refreshLayout.finishLoadMoreWithNoMoreData();
                 } else {
                     refreshLayout.finishLoadMore(1000);
                 }
+            }
+        });
+    }
+
+    private void onRefresh() {
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                isRefreshOrLoadMore = true;
+                getBannerData();
+                pageNum = 0;
+                getArticleData(pageNum);
+                refreshLayout.finishRefresh(1000);
             }
         });
     }
@@ -243,7 +265,10 @@ public class Service2Fragment extends BaseFragment {
         NetClient.get(baseActivity, HostType.BASE_URL_SECOND, "article/list/" + curPage + "/json", null, ArticleListVo.class, new NetClient.Listener2<ArticleListVo>() {
             @Override
             public void onPrepare() {
-                showLoadingView();
+                if (!isRefreshOrLoadMore) {
+                    showLoadingView();
+                }
+                isRefreshOrLoadMore = false;
             }
 
             @Override

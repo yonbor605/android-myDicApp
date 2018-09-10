@@ -17,6 +17,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 import com.yonbor.baselib.recyclerviewadapter.MultiItemTypeAdapter;
 import com.yonbor.baselib.recyclerviewadapter.base.ViewHolder;
+import com.yonbor.baselib.widget.loading.LoadViewHelper;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.adapter.service.project.ProjectsAdapter;
 import com.yonbor.mydicapp.activity.base.BaseFragment;
@@ -41,6 +42,7 @@ public class ProjectsFragment extends BaseFragment {
     private int pageNum = 1;
     private int pageCount;
     private ArrayList<ProjectVo> projectList = new ArrayList<>();
+    private static boolean isRefreshOrLoadMore = false; // 解决viewHelper的状态动画与SmartRefreshLayout的刷新、加载动画的冲突
 
 
     @Override
@@ -80,6 +82,17 @@ public class ProjectsFragment extends BaseFragment {
         refreshLayout = mainView.findViewById(R.id.refreshLayout);
         recyclerview = mainView.findViewById(R.id.recyclerview);
 
+        View base = mainView.findViewById(R.id.loadLay);
+        if (base != null) {
+            viewHelper = new LoadViewHelper(base);
+            viewHelper.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onRefresh();
+                }
+            });
+        }
+
         adapter = new ProjectsAdapter();
         adapter.setOnItemClickListener(adapterListener);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseContext);
@@ -93,19 +106,15 @@ public class ProjectsFragment extends BaseFragment {
                         .build());
         recyclerview.setAdapter(adapter);
 
-        refreshLayout.setPrimaryColorsId(R.color.lightgray, android.R.color.white);
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageNum = 1;
-                getData(pageNum, cid);
-                refreshLayout.finishRefresh(1000);
-            }
-        });
+        onRefresh();
+        onLoadMore();
+    }
 
+    private void onLoadMore() {
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                isRefreshOrLoadMore = true;
                 getData(pageNum, cid);
                 if (pageNum == pageCount) {
                     refreshLayout.finishLoadMoreWithNoMoreData();
@@ -116,11 +125,26 @@ public class ProjectsFragment extends BaseFragment {
         });
     }
 
+    private void onRefresh() {
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                isRefreshOrLoadMore = true;
+                pageNum = 1;
+                getData(pageNum, cid);
+                refreshLayout.finishRefresh(1000);
+            }
+        });
+    }
+
     private void getData(int curPage, int cid) {
         NetClient.get(baseActivity, HostType.BASE_URL_SECOND, "project/list/" + curPage + "/json?cid=" + cid, null, ProjectListVo.class, new NetClient.Listener2<ProjectListVo>() {
             @Override
             public void onPrepare() {
-                showLoadingView();
+                if (!isRefreshOrLoadMore) {
+                    showLoadingView();
+                }
+                isRefreshOrLoadMore = false;
             }
 
             @Override
