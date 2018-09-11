@@ -11,8 +11,11 @@ import android.widget.Toast;
 
 import com.yonbor.baselib.widget.loading.LoadViewHelper;
 import com.yonbor.mydicapp.app.AppApplication;
+import com.yonbor.mydicapp.model.event.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public abstract class BaseFragment extends com.yonbor.baselib.ui.base.BaseFragment {
@@ -128,6 +131,12 @@ public abstract class BaseFragment extends com.yonbor.baselib.ui.base.BaseFragme
         if (text != null && !text.trim().equals("")) {
             Toast.makeText(getActivity().getApplicationContext(), text, Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+
     }
 
 

@@ -21,8 +21,11 @@ import com.yonbor.baselib.widget.loading.LoadViewHelper;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.app.AppApplication;
 import com.yonbor.mydicapp.app.AppConstant;
+import com.yonbor.mydicapp.model.event.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 /**
@@ -358,6 +361,12 @@ public abstract class BaseActivity extends com.yonbor.baselib.ui.base.BaseActivi
      */
     protected void setTranslanteBar() {
         StatusBarCompat.translucentStatusBar(this);
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+
     }
 
 
