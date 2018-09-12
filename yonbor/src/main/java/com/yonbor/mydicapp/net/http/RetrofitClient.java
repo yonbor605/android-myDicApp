@@ -6,6 +6,9 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 
 import com.yonbor.baselib.base.AppContext;
+import com.yonbor.baselib.utils.SharedPreferencesUtil;
+import com.yonbor.baselib.utils.StringUtil;
+import com.yonbor.mydicapp.utils.CookieUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +44,6 @@ public class RetrofitClient {
     private static SparseArray<RetrofitClient> retrofitClientSparseArray = new SparseArray<>(HostType.TYPE_COUNT);
 
 
-
     public static RetrofitClient getInstance(int hostType) {
         instance = retrofitClientSparseArray.get(hostType);
         if (instance == null) {
@@ -71,21 +73,46 @@ public class RetrofitClient {
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 // 这里你可以根据自己的机型设置同时连接的个数和时间，我这里8个，和每个保持时间为20s
                 .connectionPool(new ConnectionPool(8, DEFAULT_TIMEOUT, TimeUnit.SECONDS))
+//                .addInterceptor(new Interceptor() {
+//                    @Override
+//                    public Response intercept(Chain chain) throws IOException {
+//                        Response response = chain.proceed(chain.request());
+//                        System.out.println("header===========" + response.headers().names());
+//                        System.out.println("header===========" + response.headers("X-Auth-Failed-Code"));
+//                        if (response.header("X-Auth-Failed-Code") != null) {
+//                            Intent intent = new Intent(AppContext.getHttpHeaderAction());
+//                            intent.putExtra("code", response.header("X-Auth-Failed-Code"));
+//                            AppContext.getContext().sendBroadcast(intent);
+//                        }
+//                        return response;
+//                    }
+//                })
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
+                        // 获取Cookie
                         Response response = chain.proceed(chain.request());
-                        System.out.println("header===========" + response.headers().names());
-                        System.out.println("header===========" + response.headers("X-Auth-Failed-Code"));
-                        if (response.header("X-Auth-Failed-Code") != null) {
-                            Intent intent = new Intent(AppContext.getHttpHeaderAction());
-                            intent.putExtra("code", response.header("X-Auth-Failed-Code"));
-                            AppContext.getContext().sendBroadcast(intent);
+                        List<String> cookies = response.headers("Set-Cookie");
+                        if (cookies != null && cookies.size() > 0) {
+                            String cookieStr = CookieUtil.encodeCookie(cookies);
+                            SharedPreferencesUtil.getInstance().setStringData("cookieStr", cookieStr);
                         }
                         return response;
                     }
                 })
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        // 设置Cookie
+                        String cookieStr = SharedPreferencesUtil.getInstance().getStringData("cookieStr");
+                        if (!StringUtil.isEmpty(cookieStr)) {
+                            return chain.proceed(chain.request().newBuilder().header("Cookie", cookieStr).build());
+                        }
+                        return chain.proceed(chain.request());
+                    }
+                })
                 .build();
+
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(FastJsonConverterFactory.create())

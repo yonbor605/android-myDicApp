@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.ArrayMap;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import com.yonbor.mydicapp.activity.adapter.service.article.ArticlesAdapter;
 import com.yonbor.mydicapp.activity.app.service.ProjectsActivity;
 import com.yonbor.mydicapp.activity.base.BaseFragment;
 import com.yonbor.mydicapp.activity.common.WebActivity;
+import com.yonbor.mydicapp.app.ConstantsHttp;
 import com.yonbor.mydicapp.model.NullModel;
 import com.yonbor.mydicapp.model.WanAndroidVo;
 import com.yonbor.mydicapp.model.home.banner.BannerVo;
@@ -314,7 +316,15 @@ public class Service2Fragment extends BaseFragment {
         public void onItemViewClick(View view, ViewHolder holder, ArticleVo item, int position, int tPos) {
             switch (view.getId()) {
                 case R.id.iv_like:
-//                    taskCollect(item.getId());
+                    boolean isCollect = item.isCollect();
+                    item.setCollect(!isCollect);
+//                    adapter.update(item);
+                    headerAndFooterWrapper.notifyItemChanged(position);
+                    if (isCollect) {
+                        taskCancelCollect(item.getId());
+                    } else {
+                        taskCollect(item.getId());
+                    }
                     break;
             }
 
@@ -326,12 +336,11 @@ public class Service2Fragment extends BaseFragment {
         }
     };
 
-    /**
-     * 注意所有收藏相关都需要登录操作，建议登录将返回的cookie（其中包含账号、密码）持久化到本地即可。
-     * @param id
-     */
-    private void taskCollect(int id) {
-        NetClient.post(baseActivity, HostType.BASE_URL_SECOND, "lg/collect/" + id + "/json", null, null, NullModel.class, new NetClient.Listener2<NullModel>() {
+    private void taskCancelCollect(int id) {
+        ArrayMap<String, String> head = new ArrayMap<>();
+        head.put("Cookie", "loginUserName=mydicapp;loginUserPassword=123qwe");
+
+        NetClient.post(baseActivity, HostType.BASE_URL_SECOND, "lg/uncollect_originId/" + id + "/json", head, "", NullModel.class, new NetClient.Listener2<NullModel>() {
 
             @Override
             public void onPrepare() {
@@ -340,7 +349,46 @@ public class Service2Fragment extends BaseFragment {
 
             @Override
             public void onSuccess(WanAndroidVo<NullModel> result) {
+                if (result.isSuccess()) {
+                    showToast("已取消收藏");
+                } else {
+                    showToast(result.getToast());
+                    onFaile(null);
+                }
+            }
 
+            @Override
+            public void onFaile(Throwable t) {
+
+            }
+        });
+    }
+
+    /**
+     * 注意所有收藏相关都需要登录操作，建议登录将返回的cookie（其中包含账号、密码）持久化到本地即可。
+     *
+     * @param id
+     */
+    private void taskCollect(int id) {
+
+        ArrayMap<String, String> head = new ArrayMap<>();
+        head.put("Cookie", "loginUserName=mydicapp;loginUserPassword=123qwe");
+
+        NetClient.post(baseActivity, HostType.BASE_URL_SECOND, "lg/collect/" + id + "/json", head, "", NullModel.class, new NetClient.Listener2<NullModel>() {
+
+            @Override
+            public void onPrepare() {
+
+            }
+
+            @Override
+            public void onSuccess(WanAndroidVo<NullModel> result) {
+                if (result.isSuccess()) {
+                    showToast("收藏成功");
+                } else {
+                    showToast(result.getToast());
+                    onFaile(null);
+                }
             }
 
             @Override

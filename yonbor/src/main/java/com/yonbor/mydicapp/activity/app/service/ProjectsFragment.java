@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.ArrayMap;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.adapter.service.project.ProjectsAdapter;
 import com.yonbor.mydicapp.activity.base.BaseFragment;
 import com.yonbor.mydicapp.activity.common.WebActivity;
+import com.yonbor.mydicapp.model.NullModel;
 import com.yonbor.mydicapp.model.WanAndroidVo;
 import com.yonbor.mydicapp.model.service.project.ProjectListVo;
 import com.yonbor.mydicapp.model.service.project.ProjectVo;
@@ -187,7 +189,20 @@ public class ProjectsFragment extends BaseFragment {
         }
 
         @Override
-        public void onItemViewClick(View view, ViewHolder holder, ProjectVo projectVo, int position, int tPos) {
+        public void onItemViewClick(View view, ViewHolder holder, ProjectVo item, int position, int tPos) {
+            switch (view.getId()) {
+                case R.id.iv_project_like:
+                    boolean isCollect = item.isCollect();
+                    item.setCollect(!isCollect);
+                    adapter.update(item);
+//                    headerAndFooterWrapper.notifyItemChanged(position);
+                    if (isCollect) {
+                        taskCancelCollect(item.getId());
+                    } else {
+                        taskCollect(item.getId());
+                    }
+                    break;
+            }
 
         }
 
@@ -196,4 +211,67 @@ public class ProjectsFragment extends BaseFragment {
             return false;
         }
     };
+
+    private void taskCancelCollect(int id) {
+        ArrayMap<String, String> head = new ArrayMap<>();
+        head.put("Cookie", "loginUserName=mydicapp;loginUserPassword=123qwe");
+
+        NetClient.post(baseActivity, HostType.BASE_URL_SECOND, "lg/uncollect_originId/" + id + "/json", head, "", NullModel.class, new NetClient.Listener2<NullModel>() {
+
+            @Override
+            public void onPrepare() {
+
+            }
+
+            @Override
+            public void onSuccess(WanAndroidVo<NullModel> result) {
+                if (result.isSuccess()) {
+                    showToast("已取消收藏");
+                } else {
+                    showToast(result.getToast());
+                    onFaile(null);
+                }
+            }
+
+            @Override
+            public void onFaile(Throwable t) {
+
+            }
+        });
+    }
+
+    /**
+     * 注意所有收藏相关都需要登录操作，建议登录将返回的cookie（其中包含账号、密码）持久化到本地即可。
+     *
+     * @param id
+     */
+    private void taskCollect(int id) {
+
+        ArrayMap<String, String> head = new ArrayMap<>();
+        head.put("Cookie", "loginUserName=mydicapp;loginUserPassword=123qwe");
+
+        NetClient.post(baseActivity, HostType.BASE_URL_SECOND, "lg/collect/" + id + "/json", head, "", NullModel.class, new NetClient.Listener2<NullModel>() {
+
+            @Override
+            public void onPrepare() {
+
+            }
+
+            @Override
+            public void onSuccess(WanAndroidVo<NullModel> result) {
+                if (result.isSuccess()) {
+                    showToast("收藏成功");
+                } else {
+                    showToast(result.getToast());
+                    onFaile(null);
+                }
+            }
+
+            @Override
+            public void onFaile(Throwable t) {
+
+            }
+        });
+
+    }
 }
