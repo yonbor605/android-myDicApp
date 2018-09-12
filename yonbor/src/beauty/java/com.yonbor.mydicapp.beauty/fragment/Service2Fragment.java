@@ -172,10 +172,11 @@ public class Service2Fragment extends BaseFragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 isRefreshOrLoadMore = true;
-                getArticleData(pageNum);
                 if (pageNum == (pageCount - 1)) {
+                    getArticleData(pageNum);
                     refreshLayout.finishLoadMoreWithNoMoreData();
                 } else {
+                    getArticleData(pageNum);
                     refreshLayout.finishLoadMore(1000);
                 }
             }

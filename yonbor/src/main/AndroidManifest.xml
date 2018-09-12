@@ -252,7 +252,10 @@
             android:name=".activity.app.service.ProjectsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".activity.app.my.MyCollectionActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

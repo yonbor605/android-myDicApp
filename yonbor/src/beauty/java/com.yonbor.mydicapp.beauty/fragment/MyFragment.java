@@ -15,6 +15,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yonbor.baselib.utils.EffectUtil;
 import com.yonbor.mydicapp.R;
+import com.yonbor.mydicapp.activity.app.my.MyCollectionActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -171,7 +172,8 @@ public class MyFragment extends BaseFragment {
         rlMyCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), MyCollectionActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -243,7 +245,7 @@ public class MyFragment extends BaseFragment {
         ivSeting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
 

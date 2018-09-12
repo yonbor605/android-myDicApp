@@ -87,30 +87,30 @@ public class RetrofitClient {
 //                        return response;
 //                    }
 //                })
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        // 获取Cookie
-                        Response response = chain.proceed(chain.request());
-                        List<String> cookies = response.headers("Set-Cookie");
-                        if (cookies != null && cookies.size() > 0) {
-                            String cookieStr = CookieUtil.encodeCookie(cookies);
-                            SharedPreferencesUtil.getInstance().setStringData("cookieStr", cookieStr);
-                        }
-                        return response;
-                    }
-                })
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        // 设置Cookie
-                        String cookieStr = SharedPreferencesUtil.getInstance().getStringData("cookieStr");
-                        if (!StringUtil.isEmpty(cookieStr)) {
-                            return chain.proceed(chain.request().newBuilder().header("Cookie", cookieStr).build());
-                        }
-                        return chain.proceed(chain.request());
-                    }
-                })
+//                .addInterceptor(new Interceptor() {
+//                    @Override
+//                    public Response intercept(Chain chain) throws IOException {
+//                        // 获取Cookie
+//                        Response response = chain.proceed(chain.request());
+//                        List<String> cookies = response.headers("Set-Cookie");
+//                        if (cookies != null && cookies.size() > 0) {
+//                            String cookieStr = CookieUtil.encodeCookie(cookies);
+//                            SharedPreferencesUtil.getInstance().setStringData("cookieStr", cookieStr);
+//                        }
+//                        return response;
+//                    }
+//                })
+//                .addInterceptor(new Interceptor() {
+//                    @Override
+//                    public Response intercept(Chain chain) throws IOException {
+//                        // 设置Cookie
+//                        String cookieStr = SharedPreferencesUtil.getInstance().getStringData("cookieStr");
+//                        if (!StringUtil.isEmpty(cookieStr)) {
+//                            return chain.proceed(chain.request().newBuilder().header("Cookie", cookieStr).build());
+//                        }
+//                        return chain.proceed(chain.request());
+//                    }
+//                })
                 .build();
 
         retrofit = new Retrofit.Builder()

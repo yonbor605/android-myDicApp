@@ -117,10 +117,11 @@ public class ProjectsFragment extends BaseFragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 isRefreshOrLoadMore = true;
-                getData(pageNum, cid);
                 if (pageNum == pageCount) {
+                    getData(pageNum, cid);
                     refreshLayout.finishLoadMoreWithNoMoreData();
                 } else {
+                    getData(pageNum, cid);
                     refreshLayout.finishLoadMore(1000);
                 }
             }
@@ -195,7 +196,6 @@ public class ProjectsFragment extends BaseFragment {
                     boolean isCollect = item.isCollect();
                     item.setCollect(!isCollect);
                     adapter.update(item);
-//                    headerAndFooterWrapper.notifyItemChanged(position);
                     if (isCollect) {
                         taskCancelCollect(item.getId());
                     } else {
