@@ -48,7 +48,7 @@
                 android:layout_below="@id/tv_project_title"
                 android:layout_marginTop="@dimen/dp_10"
                 android:ellipsize="end"
-                android:maxLines="3"
+                android:maxLines="5"
                 android:text="@string/app_name"
                 android:textColor="@color/item_desc"
                 android:textSize="@dimen/item_tv_content" />
@@ -63,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/tv_project_time"
+                    android:layout_alignParentBottom="true"
                     android:text="@string/app_name"
                     android:textColor="@color/item_author"
                     android:textSize="@dimen/item_tv_author" />
@@ -71,20 +72,11 @@
                     android:id="@+id/tv_project_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/iv_project_like"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginBottom="@dimen/dp_8"
                     android:text="@string/app_name"
                     android:textColor="@color/item_date"
                     android:textSize="@dimen/item_tv_date" />
-
-                <ImageView
-                    android:id="@+id/iv_project_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    app:srcCompat="@drawable/ic_like_not" />
 
             </RelativeLayout>
         </RelativeLayout>

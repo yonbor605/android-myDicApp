@@ -31,7 +31,7 @@ public class ArticlesAdapter extends CommonAdapter<ArticleVo> {
         ImageView iv_thumbnail = holder.getView(R.id.iv_article_thumbnail);
         TextView tv_title = holder.getView(R.id.tv_article_title);
         TextView tv_chapterName = holder.getView(R.id.tv_article_chapterName);
-        ImageView iv_like = holder.getView(R.id.iv_like);
+
 
         if (Build.VERSION.SDK_INT >= 24)
             tv_title.setText(Html.fromHtml(item.getTitle(),Html.FROM_HTML_MODE_COMPACT));
@@ -41,10 +41,7 @@ public class ArticlesAdapter extends CommonAdapter<ArticleVo> {
         tv_author.setText(item.getAuthor());
         tv_date.setText(item.getNiceDate());
 
-        if (item.isCollect())
-            iv_like.setImageResource(R.drawable.ic_like);
-        else
-            iv_like.setImageResource(R.drawable.ic_like_not);
+
 
         if (!item.getChapterName().isEmpty()) {
             tv_chapterName.setText(item.getChapterName());
@@ -70,14 +67,7 @@ public class ArticlesAdapter extends CommonAdapter<ArticleVo> {
         }
 
 
-        EffectUtil.addClickEffect(iv_like);
-        iv_like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null)
-                    mOnItemClickListener.onItemViewClick(v, holder, item, position, -1);
-            }
-        });
+
 
 
         EffectUtil.addClickEffect(holder.getConvertView());
