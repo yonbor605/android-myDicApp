@@ -4,12 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.util.ArrayMap;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -22,15 +27,13 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 import com.yonbor.baselib.recyclerviewadapter.MultiItemTypeAdapter;
 import com.yonbor.baselib.recyclerviewadapter.base.ViewHolder;
 import com.yonbor.baselib.recyclerviewadapter.wrapper.HeaderAndFooterWrapper;
-import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.baselib.widget.loading.LoadViewHelper;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.adapter.service.article.ArticlesAdapter;
 import com.yonbor.mydicapp.activity.app.service.ProjectsActivity;
 import com.yonbor.mydicapp.activity.base.BaseFragment;
 import com.yonbor.mydicapp.activity.common.WebActivity;
-import com.yonbor.mydicapp.app.ConstantsHttp;
-import com.yonbor.mydicapp.model.NullModel;
+import com.yonbor.mydicapp.beauty.activity.MainTabActivity;
 import com.yonbor.mydicapp.model.WanAndroidVo;
 import com.yonbor.mydicapp.model.home.banner.BannerVo;
 import com.yonbor.mydicapp.model.service.article.ArticleListVo;
@@ -54,8 +57,10 @@ public class Service2Fragment extends BaseFragment {
 
 
     Unbinder unbinder;
-    @BindView(R.id.actionbar)
-    AppActionBar actionbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tv_toolbar_title)
+    TextView tvToolbarTitle;
     @BindView(R.id.recyclerview)
     SwipeMenuRecyclerView recyclerview;
     @BindView(R.id.refreshLayout)
@@ -108,25 +113,12 @@ public class Service2Fragment extends BaseFragment {
     }
 
     private void findView() {
-        actionbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.actionbar_bg));
-        actionbar.setTitle("玩Android");
-        actionbar.addAction(new AppActionBar.Action() {
-            @Override
-            public int getDrawable() {
-                return 0;
-            }
-
-            @Override
-            public String getText() {
-                return "项目";
-            }
-
-            @Override
-            public void performAction(View view) {
-                Intent intent = new Intent(baseActivity, ProjectsActivity.class);
-                startActivity(intent);
-            }
-        });
+        ((MainTabActivity) getActivity()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((MainTabActivity) getActivity()).getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayShowTitleEnabled(false);
+        tvToolbarTitle.setText("玩Android");
+        setHasOptionsMenu(true);
 
         View base = mainView.findViewById(R.id.loadLay);
         if (base != null) {
@@ -325,10 +317,6 @@ public class Service2Fragment extends BaseFragment {
     };
 
 
-
-
-
-
     @Override
     public void onDestroyView() {
         unbinder.unbind();
@@ -336,4 +324,23 @@ public class Service2Fragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.menu_service_toolbar, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                showToast("研发中。。。");
+                break;
+            case R.id.action_category:
+                Intent intent = new Intent(baseActivity, ProjectsActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
 }

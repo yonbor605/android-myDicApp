@@ -6,11 +6,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
-import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.model.WanAndroidVo;
@@ -30,8 +31,10 @@ import butterknife.ButterKnife;
  */
 public class ProjectsActivity extends BaseActivity {
 
-    @BindView(R.id.actionbar)
-    AppActionBar actionBar;
+    @BindView(R.id.tv_toolbar_title)
+    TextView tvToolbarTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.tab)
     TabLayout tab;
     @BindView(R.id.viewpager)
@@ -53,24 +56,18 @@ public class ProjectsActivity extends BaseActivity {
 
     @Override
     public void findView() {
-        actionBar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.actionbar_bg));
-        actionBar.setTitle("项目");
-        actionBar.setBackAction(new AppActionBar.Action() {
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayShowTitleEnabled(false);
+        tvToolbarTitle.setText("项目");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public int getDrawable() {
-                return R.drawable.btn_back;
-            }
-
-            @Override
-            public String getText() {
-                return null;
-            }
-
-            @Override
-            public void performAction(View view) {
+            public void onClick(View v) {
                 back();
             }
         });
+
         tab.setupWithViewPager(viewpager);
         fragments = new ArrayList<>();
     }
@@ -150,5 +147,6 @@ public class ProjectsActivity extends BaseActivity {
     public void onDestroy() {
         super.onDestroy();
     }
+
 
 }

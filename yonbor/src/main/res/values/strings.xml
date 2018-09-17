@@ -13,4 +13,9 @@
     <string name="cancel_collect_success">已取消收藏</string>
     <string name="new_fresh">新</string>
 
+    //Common
+    <string name="action_search">Search</string>
+    <string name="action_category">Category</string>
+
+
 </resources>
