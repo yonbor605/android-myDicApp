@@ -21,6 +21,8 @@ import com.yonbor.baselib.base.AppContext;
 import com.yonbor.baselib.log.CustomLogCatStrategy;
 import com.yonbor.mydicapp.utils.CommonUtil;
 
+import org.litepal.LitePal;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -104,6 +106,9 @@ public class AppApplication extends BaseApplication {
 //            }
 //            LeakCanary.install(this);
 //        }
+
+        /** 初始化litepal */
+        LitePal.initialize(getApplicationContext());
     }
 
     /**
