@@ -32,6 +32,7 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.adapter.service.article.ArticlesAdapter;
 import com.yonbor.mydicapp.activity.app.service.ProjectsActivity;
 import com.yonbor.mydicapp.activity.base.BaseFragment;
+import com.yonbor.mydicapp.activity.common.SearchActivity;
 import com.yonbor.mydicapp.activity.common.WebActivity;
 import com.yonbor.mydicapp.beauty.activity.MainTabActivity;
 import com.yonbor.mydicapp.model.WanAndroidVo;
@@ -334,11 +335,12 @@ public class Service2Fragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                showToast("研发中。。。");
+                Intent intent = new Intent(baseActivity, SearchActivity.class);
+                startActivity(intent);
                 break;
             case R.id.action_category:
-                Intent intent = new Intent(baseActivity, ProjectsActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(baseActivity, ProjectsActivity.class);
+                startActivity(intent2);
                 break;
         }
         return true;

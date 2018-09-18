@@ -13,9 +13,15 @@
     <string name="cancel_collect_success">已取消收藏</string>
     <string name="new_fresh">新</string>
 
-    //Common
+    <!-- Common -->
     <string name="action_search">Search</string>
     <string name="action_category">Category</string>
+
+    <!-- Search -->
+    <string name="hot_search">热门搜索</string>
+    <string name="clear_all">清空</string>
+    <string name="history_search">搜索历史</string>
+    <string name="search_tint">发现更多干货</string>
 
 
 </resources>

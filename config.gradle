@@ -76,6 +76,8 @@ ext {
             "butterknife"               : "com.jakewharton:butterknife:${dependVersion.butterknife}",
             "butterknife-compiler"      : "com.jakewharton:butterknife-compiler:${dependVersion.butterknife}",
             "constraint-layout"         : "com.android.support.constraint:constraint-layout:1.1.2",
-            "eventbus"                  : "org.greenrobot:eventbus:3.1.1"
+            "eventbus"                  : "org.greenrobot:eventbus:3.1.1",
+            // 数据库
+            "litepal"                   : 'org.litepal.android:core:2.0.0',
     ]
 }

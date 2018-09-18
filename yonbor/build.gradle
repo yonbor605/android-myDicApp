@@ -185,5 +185,7 @@ dependencies {
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"] // 没有使用特殊Header，可以不加这行
     implementation rootProject.ext.dependencies["eventbus"]
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
+    implementation rootProject.ext.dependencies["litepal"]
 
 }
