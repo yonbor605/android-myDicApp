@@ -2,6 +2,7 @@ package com.yonbor.mydicapp.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -109,6 +110,10 @@ public class AppApplication extends BaseApplication {
 
         /** 初始化litepal */
         LitePal.initialize(getApplicationContext());
+        SQLiteDatabase db = LitePal.getDatabase();
+
+
+
     }
 
     /**

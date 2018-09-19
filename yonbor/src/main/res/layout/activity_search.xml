@@ -85,13 +85,21 @@
                     android:textSize="@dimen/sp_16" />
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_history_search"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/dp_12"
-                android:background="@color/viewBackground" />
+                android:layout_height="match_parent">
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_history_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:background="@color/viewBackground" />
+
+                <include
+                    android:id="@+id/empty"
+                    layout="@layout/search_empty_view" />
+            </FrameLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

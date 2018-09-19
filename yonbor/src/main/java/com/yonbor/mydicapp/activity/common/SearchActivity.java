@@ -1,23 +1,31 @@
 package com.yonbor.mydicapp.activity.common;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yonbor.baselib.recyclerviewadapter.MultiItemTypeAdapter;
+import com.yonbor.baselib.recyclerviewadapter.base.ViewHolder;
 import com.yonbor.mydicapp.R;
+import com.yonbor.mydicapp.activity.adapter.search.SearchHistoryAdapter;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
 import com.yonbor.mydicapp.model.WanAndroidVo;
 import com.yonbor.mydicapp.model.search.HotKeyVo;
+import com.yonbor.mydicapp.model.search.SearchHistoryVo;
 import com.yonbor.mydicapp.net.http.HostType;
 import com.yonbor.mydicapp.net.http.NetClient;
 import com.yonbor.mydicapp.utils.CommonUtil;
@@ -25,8 +33,12 @@ import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import org.litepal.LitePal;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +59,9 @@ public class SearchActivity extends BaseActivity {
     NestedScrollView searchScrollView;
 
     private ArrayList<HotKeyVo> hotKeyList = new ArrayList<>();
+    private SearchHistoryAdapter adapter;
+    private ArrayList<SearchHistoryVo> searchHistoryList = new ArrayList<>();
+    private View mEmptyLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +73,6 @@ public class SearchActivity extends BaseActivity {
         getHotKeyData();
     }
 
-    private void setListener() {
-        hotSearchFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-            @Override
-            public boolean onTagClick(View view, int position, FlowLayout parent) {
-
-
-                return true;
-            }
-        });
-    }
 
     @Override
     public void findView() {
@@ -82,8 +87,61 @@ public class SearchActivity extends BaseActivity {
             }
         });
 
-
+        mEmptyLayout = findViewById(R.id.empty);
+        adapter = new SearchHistoryAdapter();
+        adapter.setOnItemClickListener(adapterListener);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseContext);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        rvHistorySearch.setLayoutManager(linearLayoutManager);
+        rvHistorySearch.setAdapter(adapter);
     }
+
+    private void setListener() {
+        hotSearchFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                if (hotKeyList.size() > 0) {
+                    HotKeyVo hotKeyVo = hotKeyList.get(position);
+                    goToSearchList(hotKeyVo.getName());
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+        searchHistoryClearAllTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchHistoryList.clear();
+                adapter.setDatas(searchHistoryList);
+                LitePal.deleteAll(SearchHistoryVo.class);
+                rvHistorySearch.setVisibility(View.GONE);
+                mEmptyLayout.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        querySearchHistory();
+    }
+
+    private void querySearchHistory() {
+        List<SearchHistoryVo> all = LitePal.findAll(SearchHistoryVo.class);
+        Collections.reverse(all);
+        searchHistoryList = (ArrayList<SearchHistoryVo>) all;
+        if (searchHistoryList.size() > 0) {
+            adapter.setDatas(searchHistoryList);
+            rvHistorySearch.setVisibility(View.VISIBLE);
+            mEmptyLayout.setVisibility(View.GONE);
+        } else {
+            rvHistorySearch.setVisibility(View.GONE);
+            mEmptyLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
 
     private void getHotKeyData() {
         NetClient.get(baseActivity, HostType.BASE_URL_SECOND, "hotkey/json", null, HotKeyVo.class, new NetClient.Listener2<ArrayList<HotKeyVo>>() {
@@ -170,7 +228,52 @@ public class SearchActivity extends BaseActivity {
         }
     };
 
-    private void goToSearchList(String s) {
-
+    private void goToSearchList(String key) {
+        saveSearchKey(key);
+        // 跳转到搜索结果列表页面
+        Intent intent = new Intent(baseActivity, SearchResultActivity.class);
+        intent.putExtra("searchKey", key);
+        startActivity(intent);
     }
+
+    private void saveSearchKey(String key) {
+        SearchHistoryVo searchHistoryVo = new SearchHistoryVo();
+        searchHistoryVo.setKey(key.trim());
+        List<SearchHistoryVo> searchHistoryVos = LitePal.where("key = ?", key.trim()).find(SearchHistoryVo.class);
+        if (searchHistoryVos.size() == 0) {
+            searchHistoryVo.save();
+        } else {
+            LitePal.delete(SearchHistoryVo.class, searchHistoryVos.get(0).getId());
+            searchHistoryVo.save();
+        }
+    }
+
+
+    MultiItemTypeAdapter.OnItemClickListener adapterListener = new MultiItemTypeAdapter.OnItemClickListener<SearchHistoryVo>() {
+
+        @Override
+        public void onItemClick(ViewGroup parent, View view, ViewHolder holder, List<SearchHistoryVo> datas, int position) {
+            if (datas.size() > 0) {
+                SearchHistoryVo searchHistoryVo = datas.get(position);
+                goToSearchList(searchHistoryVo.getKey());
+            }
+
+        }
+
+        @Override
+        public void onItemViewClick(View view, ViewHolder holder, SearchHistoryVo searchHistoryVo, int position, int tPos) {
+            switch (view.getId()) {
+                case R.id.iv_clear:
+                    LitePal.delete(SearchHistoryVo.class, searchHistoryVo.getId());
+                    adapter.remove(position);
+                    break;
+            }
+
+        }
+
+        @Override
+        public boolean onItemLongClick(ViewGroup parent, View view, ViewHolder holder, List<SearchHistoryVo> datas, int position) {
+            return false;
+        }
+    };
 }
