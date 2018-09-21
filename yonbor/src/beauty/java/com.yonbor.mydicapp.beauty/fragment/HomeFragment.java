@@ -18,6 +18,7 @@ import com.yonbor.mydicapp.activity.app.home.code.CreateQRCodeActivity;
 import com.yonbor.mydicapp.activity.app.home.device.DeviceInfoActivity;
 import com.yonbor.mydicapp.activity.app.home.order.TakeoutOrderActivity;
 import com.yonbor.mydicapp.activity.app.home.player.VideoPlayerActivity;
+import com.yonbor.mydicapp.activity.app.home.run.RunTextViewActivity;
 import com.yonbor.mydicapp.activity.app.home.rxjava2.Rxjava2SampleActivity;
 import com.yonbor.mydicapp.activity.app.home.toast.RxToastActivity;
 import com.yonbor.mydicapp.beauty.adapter.HomeAdapter;
@@ -101,6 +102,7 @@ public class HomeFragment extends BaseFragment {
         mData.add(new HomeItemVo("多媒体播放器", R.drawable.circle_video_player, VideoPlayerActivity.class, "/home/player/videoPlayer"));
 
         mData.add(new HomeItemVo("外卖点单", R.drawable.circle_takeout_order, TakeoutOrderActivity.class, "/home/order/takeoutOrder"));
+        mData.add(new HomeItemVo("RunTextView的使用",R.drawable.circle_wrap_text, RunTextViewActivity.class,"/home/run/runTextView"));
 
 
     }
