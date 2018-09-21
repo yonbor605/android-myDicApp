@@ -1,6 +1,8 @@
 package com.yonbor.mydicapp.cache;
 
 
+import com.yonbor.mydicapp.model.home.order.DishMenuVo;
+import com.yonbor.mydicapp.model.home.order.DishVo;
 import com.yonbor.mydicapp.model.home.rxjava2.ApiUser;
 import com.yonbor.mydicapp.model.home.rxjava2.User;
 
@@ -131,5 +133,63 @@ public class ModelCache {
             }
         }
         return userWhoLovesBoth;
+    }
+
+
+    public ArrayList<DishMenuVo> getDishMenuList() {
+        ArrayList<DishMenuVo> mDishMenuList = new ArrayList<>();
+
+        ArrayList<DishVo> dishes = new ArrayList<>();
+        dishes.add(new DishVo("面包", 1.0, 10));
+        dishes.add(new DishVo("蛋挞", 1.0, 10));
+        dishes.add(new DishVo("牛奶", 1.0, 10));
+        dishes.add(new DishVo("肠粉", 1.0, 10));
+        dishes.add(new DishVo("绿茶饼", 1.0, 10));
+        dishes.add(new DishVo("花卷", 1.0, 10));
+        dishes.add(new DishVo("包子", 1.0, 10));
+        DishMenuVo breakfast = new DishMenuVo("早点", dishes);
+
+        ArrayList<DishVo> dishes2 = new ArrayList<>();
+        dishes2.add(new DishVo("粥", 1.0, 10));
+        dishes2.add(new DishVo("炒饭", 1.0, 10));
+        dishes2.add(new DishVo("炒米粉", 1.0, 10));
+        dishes2.add(new DishVo("炒粿条", 1.0, 10));
+        dishes2.add(new DishVo("炒牛河", 1.0, 10));
+        dishes2.add(new DishVo("炒菜", 1.0, 10));
+        DishMenuVo launch = new DishMenuVo("午餐", dishes2);
+
+        ArrayList<DishVo> dishes3 = new ArrayList<>();
+        dishes3.add(new DishVo("淋菜", 1.0, 10));
+        dishes3.add(new DishVo("川菜", 1.0, 10));
+        dishes3.add(new DishVo("湘菜", 1.0, 10));
+        dishes3.add(new DishVo("粤菜", 1.0, 10));
+        dishes3.add(new DishVo("赣菜", 1.0, 10));
+        dishes3.add(new DishVo("东北菜", 1.0, 10));
+        DishMenuVo dinner = new DishMenuVo("晚餐", dishes3);
+
+        ArrayList<DishVo> dishes4 = new ArrayList<>();
+        dishes4.add(new DishVo("淋菜", 1.0, 10));
+        dishes4.add(new DishVo("川菜", 1.0, 10));
+        dishes4.add(new DishVo("湘菜", 1.0, 10));
+        dishes4.add(new DishVo("湘菜", 1.0, 10));
+        dishes4.add(new DishVo("湘菜1", 1.0, 10));
+        dishes4.add(new DishVo("湘菜2", 1.0, 10));
+        dishes4.add(new DishVo("湘菜3", 1.0, 10));
+        dishes4.add(new DishVo("湘菜4", 1.0, 10));
+        dishes4.add(new DishVo("湘菜5", 1.0, 10));
+        dishes4.add(new DishVo("湘菜6", 1.0, 10));
+        dishes4.add(new DishVo("湘菜7", 1.0, 10));
+        dishes4.add(new DishVo("湘菜8", 1.0, 10));
+        dishes4.add(new DishVo("粤菜", 1.0, 10));
+        dishes4.add(new DishVo("赣菜", 1.0, 10));
+        dishes4.add(new DishVo("东北菜", 1.0, 10));
+        DishMenuVo supper = new DishMenuVo("夜宵", dishes4);
+
+        mDishMenuList.add(breakfast);
+        mDishMenuList.add(launch);
+        mDishMenuList.add(dinner);
+        mDishMenuList.add(supper);
+
+        return mDishMenuList;
     }
 }

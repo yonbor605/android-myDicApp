@@ -24,5 +24,7 @@
     <string name="search_tint">发现更多干货</string>
     <string name="search_null_tint">快来搜点干货吧</string>
 
+    <string name="rmb">¥</string>
+
 
 </resources>
