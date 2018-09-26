@@ -66,6 +66,7 @@ ext {
             "SmartRefreshHeader"        : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14",
             "recyclerview-swipe"        : "com.yanzhenjie:recyclerview-swipe:1.1.4",
             "fastjson"                  : "com.alibaba:fastjson:1.1.56.android",
+            "gson"                      : "com.google.code.gson:gson:2.8.5",
             "ConvenientBanner"          : "com.bigkoo:ConvenientBanner:2.1.4",
             "eventbus"                  : "org.greenrobot:eventbus:3.0.0",
             // 分包
