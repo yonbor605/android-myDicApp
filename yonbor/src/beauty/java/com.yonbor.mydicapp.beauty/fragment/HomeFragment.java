@@ -109,7 +109,7 @@ public class HomeFragment extends BaseFragment {
         mData.add(new HomeItemVo("数据处理工具",R.drawable.circle_data, DataToolActivity.class,"/home/tool/dataTool"));
 
         mData.add(new HomeItemVo("文本处理工具",R.drawable.circle_text, TextToolActivity.class,"/home/tool/textTool"));
-//        mData.add(new HomeItemVo("联系人侧边栏快速导航",R.drawable.circle_phone, ContactsActivity.class,"/home/contacts/contacts"));
+        mData.add(new HomeItemVo("联系人侧边栏快速导航",R.drawable.circle_phone, ContactsActivity.class,"/home/contacts/contacts"));
 
 
 
