@@ -15,6 +15,7 @@ import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.app.home.code.CodeToolActivity;
 import com.yonbor.mydicapp.activity.app.home.code.CreateQRCodeActivity;
+import com.yonbor.mydicapp.activity.app.home.contacts.ContactsActivity;
 import com.yonbor.mydicapp.activity.app.home.tool.DataToolActivity;
 import com.yonbor.mydicapp.activity.app.home.device.DeviceInfoActivity;
 import com.yonbor.mydicapp.activity.app.home.order.TakeoutOrderActivity;
@@ -108,7 +109,7 @@ public class HomeFragment extends BaseFragment {
         mData.add(new HomeItemVo("数据处理工具",R.drawable.circle_data, DataToolActivity.class,"/home/tool/dataTool"));
 
         mData.add(new HomeItemVo("文本处理工具",R.drawable.circle_text, TextToolActivity.class,"/home/tool/textTool"));
-
+//        mData.add(new HomeItemVo("联系人侧边栏快速导航",R.drawable.circle_phone, ContactsActivity.class,"/home/contacts/contacts"));
 
 
 
