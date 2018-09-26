@@ -22,6 +22,7 @@ import com.yonbor.mydicapp.activity.app.home.player.VideoPlayerActivity;
 import com.yonbor.mydicapp.activity.app.home.run.RunTextViewActivity;
 import com.yonbor.mydicapp.activity.app.home.rxjava2.Rxjava2SampleActivity;
 import com.yonbor.mydicapp.activity.app.home.toast.RxToastActivity;
+import com.yonbor.mydicapp.activity.app.home.tool.TextToolActivity;
 import com.yonbor.mydicapp.beauty.adapter.HomeAdapter;
 import com.yonbor.mydicapp.model.home.HomeItemVo;
 
@@ -104,7 +105,10 @@ public class HomeFragment extends BaseFragment {
 
         mData.add(new HomeItemVo("外卖点单", R.drawable.circle_takeout_order, TakeoutOrderActivity.class, "/home/order/takeoutOrder"));
         mData.add(new HomeItemVo("RunTextView的使用",R.drawable.circle_wrap_text, RunTextViewActivity.class,"/home/run/runTextView"));
-        mData.add(new HomeItemVo("数据处理工具",R.drawable.circle_data, DataToolActivity.class,"/home/tool/datatool"));
+        mData.add(new HomeItemVo("数据处理工具",R.drawable.circle_data, DataToolActivity.class,"/home/tool/dataTool"));
+
+        mData.add(new HomeItemVo("文本处理工具",R.drawable.circle_text, TextToolActivity.class,"/home/tool/textTool"));
+
 
 
 

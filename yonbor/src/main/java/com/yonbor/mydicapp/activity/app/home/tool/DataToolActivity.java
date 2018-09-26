@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-@Route(path = "/home/tool/datatool")
+@Route(path = "/home/tool/dataTool")
 public class DataToolActivity extends BaseActivity {
 
     @BindView(R.id.editText)
