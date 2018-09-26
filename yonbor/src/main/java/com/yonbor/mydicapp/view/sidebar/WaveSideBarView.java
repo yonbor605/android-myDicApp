@@ -142,9 +142,19 @@ public class WaveSideBarView extends View {
                     return false;
                 }
                 startAnimator(mRatio, 1.0f);
+
+                mCenterY = (int) y;
+                if (oldChoose != newChoose) {
+                    if (newChoose >= 0 && newChoose < mLetters.size()) {
+                        mChoose = newChoose;
+                        if (listener != null) {
+                            listener.onLetterChange(mLetters.get(newChoose));
+                        }
+                    }
+                }
+                invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
-
                 mCenterY = (int) y;
                 if (oldChoose != newChoose) {
                     if (newChoose >= 0 && newChoose < mLetters.size()) {
