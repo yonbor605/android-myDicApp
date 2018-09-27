@@ -16,6 +16,7 @@ import com.yonbor.mydicapp.R;
 import com.yonbor.mydicapp.activity.app.home.code.CodeToolActivity;
 import com.yonbor.mydicapp.activity.app.home.code.CreateQRCodeActivity;
 import com.yonbor.mydicapp.activity.app.home.contacts.ContactsActivity;
+import com.yonbor.mydicapp.activity.app.home.selector.ImageVideoSelectorActivity;
 import com.yonbor.mydicapp.activity.app.home.tool.DataToolActivity;
 import com.yonbor.mydicapp.activity.app.home.device.DeviceInfoActivity;
 import com.yonbor.mydicapp.activity.app.home.order.TakeoutOrderActivity;
@@ -105,12 +106,12 @@ public class HomeFragment extends BaseFragment {
         mData.add(new HomeItemVo("多媒体播放器", R.drawable.circle_video_player, VideoPlayerActivity.class, "/home/player/videoPlayer"));
 
         mData.add(new HomeItemVo("外卖点单", R.drawable.circle_takeout_order, TakeoutOrderActivity.class, "/home/order/takeoutOrder"));
-        mData.add(new HomeItemVo("RunTextView的使用",R.drawable.circle_wrap_text, RunTextViewActivity.class,"/home/run/runTextView"));
-        mData.add(new HomeItemVo("数据处理工具",R.drawable.circle_data, DataToolActivity.class,"/home/tool/dataTool"));
+        mData.add(new HomeItemVo("RunTextView的使用", R.drawable.circle_wrap_text, RunTextViewActivity.class, "/home/run/runTextView"));
+        mData.add(new HomeItemVo("数据处理工具", R.drawable.circle_data, DataToolActivity.class, "/home/tool/dataTool"));
 
-        mData.add(new HomeItemVo("文本处理工具",R.drawable.circle_text, TextToolActivity.class,"/home/tool/textTool"));
-        mData.add(new HomeItemVo("联系人侧边栏快速导航",R.drawable.circle_phone, ContactsActivity.class,"/home/contacts/contacts"));
-
+        mData.add(new HomeItemVo("文本处理工具", R.drawable.circle_text, TextToolActivity.class, "/home/tool/textTool"));
+        mData.add(new HomeItemVo("联系人侧边栏快速导航", R.drawable.circle_phone, ContactsActivity.class, "/home/contacts/contacts"));
+        mData.add(new HomeItemVo("图片&视频选择器", R.drawable.circle_matisse, ImageVideoSelectorActivity.class, "/home/selector/imageVideoSelector"));
 
 
     }
