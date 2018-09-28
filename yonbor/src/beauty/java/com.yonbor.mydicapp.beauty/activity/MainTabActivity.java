@@ -1,6 +1,7 @@
 package com.yonbor.mydicapp.beauty.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -258,11 +259,13 @@ public class MainTabActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    @SuppressLint("CheckResult")
     private void requestNecessaryPermissions() {
         rxPermissions
                 .requestEach(
                         Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.READ_SMS)
+                        Manifest.permission.READ_SMS,
+                        Manifest.permission.CAMERA)
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {

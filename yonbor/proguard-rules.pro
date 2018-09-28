@@ -284,4 +284,7 @@
     *;
 }
 
+# Matisse(知乎开源的图片、视频选择器)
+-dontwarn com.squareup.picasso.**
+
 

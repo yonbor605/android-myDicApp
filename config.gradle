@@ -80,5 +80,7 @@ ext {
             "eventbus"                  : "org.greenrobot:eventbus:3.1.1",
             // 数据库
             "litepal"                   : 'org.litepal.android:core:2.0.0',
+            // 知乎开源的图片、视频选择器
+            "matisse"                   : "com.zhihu.android:matisse:0.5.2-beta3",
     ]
 }

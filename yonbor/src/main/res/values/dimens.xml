@@ -86,4 +86,7 @@
     <dimen name="sp_32">32sp</dimen>
 
 
+    <dimen name="grid_expected_size">120dp</dimen>
+
+
 </resources>
