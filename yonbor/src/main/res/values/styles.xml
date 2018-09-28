@@ -89,4 +89,14 @@
     </style>
 
 
+    <!--图片&视频选择器-->
+    <style name="ZhihuOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorButtonNormal">@color/zhihu_primary</item>
+    </style>
+
+    <style name="DraculaOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorButtonNormal">@color/dracula_primary</item>
+    </style>
+
+
 </resources>
