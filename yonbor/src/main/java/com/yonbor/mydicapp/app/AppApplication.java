@@ -24,6 +24,7 @@ import com.yonbor.mydicapp.utils.CommonUtil;
 
 import org.litepal.LitePal;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -39,6 +40,9 @@ public class AppApplication extends BaseApplication {
      * 维护Activity的List
      */
     private static List<Activity> mActivities = Collections.synchronizedList(new LinkedList<Activity>());
+
+    // 保存地址
+    public String storeDir, storeImageUrl;
 
     @Override
     public void onCreate() {
@@ -111,7 +115,6 @@ public class AppApplication extends BaseApplication {
         /** 初始化litepal */
         LitePal.initialize(getApplicationContext());
         SQLiteDatabase db = LitePal.getDatabase();
-
 
 
     }
@@ -200,4 +203,95 @@ public class AppApplication extends BaseApplication {
         return new HttpProxyCacheServer(this);
     }
     /*饺子视频相关*/
+
+
+    /**
+     * 获取存储空间地址
+     *
+     * @return
+     */
+    public String getStoreDir() {
+        if (null == storeDir) {
+//            File f = Environment.getExternalStorageDirectory();
+            File f = this.getExternalFilesDir("");
+//            File f = this.getExternalCacheDir();
+            if (null != f) {
+                StringBuffer path = new StringBuffer();
+                path.append(f.getPath()).append(File.separator).append(getTag()).append(File.separator)
+                ;
+                File dir = new File(path.toString());
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+                this.storeDir = path.toString();
+            }
+        }
+        return storeDir;
+    }
+
+    public String getCacheDir(String dirStr) {
+        File f = this.getExternalCacheDir();
+        if (null != f) {
+            StringBuffer path = new StringBuffer();
+            path.append(f.getPath()).append(File.separator).append(getTag())
+                    .append(File.separator).append(dirStr);
+            File dir = new File(path.toString());
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            return path.toString();
+        }
+        return null;
+    }
+
+    /**
+     * 获取图片保存目录
+     *
+     * @return
+     */
+    public String getStoreImageDir() {
+        if (null == storeImageUrl) {
+            if (null == getStoreDir()) {
+                return null;
+            } else {
+                this.storeImageUrl = new StringBuffer(getStoreDir()).append(
+                        "image").append(File.separator).toString();
+            }
+            File dir = new File(storeImageUrl);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+        }
+        return this.storeImageUrl;
+    }
+
+
+    /**
+     * 获取对应名字的图片保存目录
+     *
+     * @param dirName
+     * @return
+     */
+    public String getStoreImageDir(String dirName) {
+        String path;
+        if (null == getStoreImageDir()) {
+            return null;
+        } else {
+            path = new StringBuffer(getStoreDir()).append(
+                    "image").append(File.separator).append(dirName)
+                    .append(File.separator).toString();
+        }
+        File dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        return path;
+    }
+
+
+    private String getTag() {
+        return "ImageAndVideo";
+    }
+
+
 }

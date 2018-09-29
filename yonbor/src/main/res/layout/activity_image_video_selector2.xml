@@ -58,28 +58,17 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="16dp" />
 
-            </android.support.v7.widget.RecyclerView>
-
-
-            <com.yonbor.baselib.widget.PictureLay
-                android:id="@+id/layImg"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" />
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
 
-            <TextView
-                android:id="@+id/tv_room_to_pic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:paddingRight="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="15dp"
-                android:scrollbars="vertical"
-                android:textColor="#787878"
-                android:textSize="14sp" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
