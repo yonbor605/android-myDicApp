@@ -33,6 +33,7 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.listener.OnCheckedListener;
 import com.zhihu.matisse.listener.OnSelectedListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -62,6 +63,7 @@ public class ImageVideoSelector2Activity extends BaseActivity implements View.On
     private UriAdapter mAdapter;
     private GridImageAdapter mAdapter2;
     private int maxSelectNum = 9;
+    private List<String> mSelectedPicPath = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,7 +235,20 @@ public class ImageVideoSelector2Activity extends BaseActivity implements View.On
             Log.e("OnActivityResult ", String.valueOf(Matisse.obtainOriginalState(data)));
 
 
-            mAdapter2.setData(Matisse.obtainResult(data), Matisse.obtainPathResult(data));
+            List<String> pathList = Matisse.obtainPathResult(data);
+
+            for (int i = 0; i < pathList.size(); i++) {
+                mSelectedPicPath.add(pathList.get(i));
+            }
+
+
+            if (mSelectedPicPath.size() <= maxSelectNum) {
+                mAdapter2.setData(Matisse.obtainResult(data), mSelectedPicPath);
+            } else {
+//                showToast("所选图片超过最大限制张数");
+                mAdapter2.setData(Matisse.obtainResult(data), mSelectedPicPath.subList(0, maxSelectNum));
+            }
+
         }
     }
 
