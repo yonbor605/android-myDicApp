@@ -1,12 +1,14 @@
 package com.yonbor.mydicapp.activity.app.home.selector;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,7 +21,9 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
+import com.yonbor.mydicapp.activity.adapter.home.selector.GridImageAdapter;
 import com.yonbor.mydicapp.activity.base.BaseActivity;
+import com.yonbor.mydicapp.widget.FullyGridLayoutManager;
 import com.yonbor.mydicapp.widget.matisse.GifSizeFilter;
 import com.yonbor.mydicapp.widget.matisse.Glide4Engine;
 import com.zhihu.matisse.Matisse;
@@ -35,6 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * 多选
@@ -55,6 +60,8 @@ public class ImageVideoSelector2Activity extends BaseActivity implements View.On
     RecyclerView recyclerview2;
 
     private UriAdapter mAdapter;
+    private GridImageAdapter mAdapter2;
+    private int maxSelectNum = 9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,9 +97,41 @@ public class ImageVideoSelector2Activity extends BaseActivity implements View.On
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         recyclerview.setAdapter(mAdapter = new UriAdapter());
 
+        FullyGridLayoutManager manager = new FullyGridLayoutManager(ImageVideoSelector2Activity.this, 4, GridLayoutManager.VERTICAL, false);
+        recyclerview2.setLayoutManager(manager);
+        mAdapter2 = new GridImageAdapter(ImageVideoSelector2Activity.this, onAddPicClickListener);
+        mAdapter2.setSelectMax(maxSelectNum);
+
+        recyclerview2.setAdapter(mAdapter2);
+
         zhihu.setOnClickListener(this);
         dracula.setOnClickListener(this);
 
+    }
+
+    private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
+        @Override
+        public void onAddPicClick() {
+            checkCameraPermission();
+        }
+    };
+
+    @SuppressLint("CheckResult")
+    private void checkCameraPermission() {
+        rxPermissions.request(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA)
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(@NonNull Boolean aBoolean) throws Exception {
+                        if (aBoolean) {
+                            takeOrChoosePhoto();
+                        } else {
+                            showToast("获取相机权限失败");
+                        }
+                    }
+                });
     }
 
 
@@ -192,6 +231,9 @@ public class ImageVideoSelector2Activity extends BaseActivity implements View.On
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
             mAdapter.setData(Matisse.obtainResult(data), Matisse.obtainPathResult(data));
             Log.e("OnActivityResult ", String.valueOf(Matisse.obtainOriginalState(data)));
+
+
+            mAdapter2.setData(Matisse.obtainResult(data), Matisse.obtainPathResult(data));
         }
     }
 

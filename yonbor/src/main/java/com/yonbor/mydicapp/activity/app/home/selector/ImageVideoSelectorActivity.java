@@ -221,7 +221,7 @@ public class ImageVideoSelectorActivity extends BaseActivity implements View.OnC
                 .theme(R.style.Matisse_Dracula)
                 .countable(false)
                 .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-                .maxSelectable(9)
+                .maxSelectable(1)
                 .originalEnable(true)
                 .maxOriginalSize(10)
                 .imageEngine(new Glide4Engine())
