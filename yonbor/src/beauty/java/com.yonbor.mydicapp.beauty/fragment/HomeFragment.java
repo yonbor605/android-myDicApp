@@ -13,6 +13,7 @@ import com.yonbor.baselib.rxtool.RxImageTool;
 import com.yonbor.baselib.rxtool.RxRecyclerViewDividerTool;
 import com.yonbor.baselib.widget.AppActionBar;
 import com.yonbor.mydicapp.R;
+import com.yonbor.mydicapp.activity.app.home.account.LoginActivity;
 import com.yonbor.mydicapp.activity.app.home.code.CodeToolActivity;
 import com.yonbor.mydicapp.activity.app.home.code.CreateQRCodeActivity;
 import com.yonbor.mydicapp.activity.app.home.contacts.ContactsActivity;
@@ -112,6 +113,8 @@ public class HomeFragment extends BaseFragment {
         mData.add(new HomeItemVo("文本处理工具", R.drawable.circle_text, TextToolActivity.class, "/home/tool/textTool"));
         mData.add(new HomeItemVo("联系人侧边栏快速导航", R.drawable.circle_phone, ContactsActivity.class, "/home/contacts/contacts"));
         mData.add(new HomeItemVo("图片&视频选择器", R.drawable.circle_matisse, ImageVideoSelectorActivity.class, "/home/selector/imageVideoSelector"));
+
+        mData.add(new HomeItemVo("登录界面", R.drawable.circle_clound, LoginActivity.class, "/home/account/login"));
 
 
     }

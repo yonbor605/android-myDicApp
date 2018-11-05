@@ -7,7 +7,7 @@
     <color name="actionbar_bg">#35b46e</color>
     <color name="actionbar_bg1">#35b46f</color>
     <color name="h_text">#aeaeaa</color>
-
+    <color name="text_hint_color">#9f9f9f</color>
     <color name="selectbg">#f2f2f2</color>
 
     <!--RxToast-->
