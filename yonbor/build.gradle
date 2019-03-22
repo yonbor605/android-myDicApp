@@ -114,7 +114,7 @@ android {
             buildConfigField 'String', 'BASE_URL', '"https://app.bshcn.com.cn/"'
             buildConfigField 'String', 'HTTP_IMG_URL', '"http://image.bshcn.com.cn/upload/image/"'
 
-            buildConfigField 'String', 'BASE_URL2', '"http://www.wanandroid.com/"'
+            buildConfigField 'String', 'BASE_URL2', '"https://www.wanandroid.com/"'
 
         }
     }
